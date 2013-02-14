@@ -53,7 +53,9 @@ private static Subject currentSubject;
 				mav.addObject("selectedSubject", currentSubject);
 				mav.addObject("groupMembers", groupService.getGroupMembersByID(currentGroup.getId()));
 				mav.addObject("subjectDates", subjectService.getSubjectDatesByID(currentSubject.getId()));		
-		} finally {};
+		} catch (Exception e) {
+				return mav;
+		};
 		//mav.addObject(attributeName, attributeValue);
 //		} else
 //		{

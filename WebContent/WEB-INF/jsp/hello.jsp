@@ -22,14 +22,14 @@
 <form name="group" action="/myJournal/hello" method="post">
 Група: <select name="Group" style="width : 200">
 <c:forEach var="group" items="${groups}">
-<option value="${gcount}">${group.groupName}</option>
+<option value="${group.id}">${group.groupName}</option>
 <c:set var="gcount" value="${gcount + 1}" scope="request"/>
 </c:forEach>
 </select>
 </br>
  Предмет: <select name="Subject" style="width : 200">
 <c:forEach var="subject" items="${subjects}">
-<option value="${scount}">${subject.subjectName}</option>
+<option value="${subject.id}">${subject.subjectName}</option>
 <c:set var="scount" value="${scount + 1}" scope="request"/>
 </c:forEach>
 </select>

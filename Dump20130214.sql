@@ -53,7 +53,7 @@ CREATE TABLE `groups` (
   `group_name` varchar(45) NOT NULL,
   PRIMARY KEY (`group_id`),
   UNIQUE KEY `group_name_UNIQUE` (`group_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62,7 +62,7 @@ CREATE TABLE `groups` (
 
 LOCK TABLES `groups` WRITE;
 /*!40000 ALTER TABLE `groups` DISABLE KEYS */;
-INSERT INTO `groups` VALUES (1,'MVT-01'),(2,'MVT-02'),(3,'MVT-03'),(4,'MVT-04');
+INSERT INTO `groups` VALUES (1,'MVT-01'),(2,'MVT-02'),(3,'MVT-03'),(4,'MVT-04'),(100,'Pink Floyd');
 /*!40000 ALTER TABLE `groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,9 +85,9 @@ CREATE TABLE `lesson` (
   KEY `fk_student_id_idx` (`subject_id`),
   KEY `fk_subject_id_idx` (`subject_id`),
   KEY `fk_teacher_id_idx` (`teacher_id`),
-  CONSTRAINT `fk_teacher_id` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`teacher_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_student_id` FOREIGN KEY (`subject_id`) REFERENCES `students` (`student_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_subject_id` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`subject_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_subject_id` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`subject_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_teacher_id` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`teacher_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -117,9 +117,9 @@ CREATE TABLE `students` (
   UNIQUE KEY `book_nr_UNIQUE` (`book_nr`),
   KEY `fk_group_id_idx` (`group_id`),
   KEY `fk_user_id_idx` (`user_id`),
-  CONSTRAINT `fk_user_s_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`USER_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_group_id` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_group_id` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_s_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`USER_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=100503 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,7 +128,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (1,'mvt-00001','Ivanov I.I.',1,NULL),(2,'mvt-00002','Petrov P.P.',1,NULL),(3,'mvt-00003','Ivanov I.S.',1,NULL),(4,'mvt-00012','Sidirov S.S.',2,NULL),(5,'mvt-00021','Kozloff K.Z.',2,NULL),(6,'mvt-00022','Jonson J.S.',1,NULL),(7,'Chuch=k','Norris Carlos Ray',3,NULL);
+INSERT INTO `students` VALUES (1,'mvt-00001','Ivanov I.I.',1,NULL),(2,'mvt-00002','Petrov P.P.',1,NULL),(3,'mvt-00003','Ivanov I.S.',1,NULL),(4,'mvt-00012','Sidirov S.S.',2,NULL),(5,'mvt-00021','Kozloff K.Z.',2,NULL),(6,'mvt-00022','Jonson J.S.',1,NULL),(7,'Chuch=k','Norris Carlos Ray',3,NULL),(100500,'Pink-001','Девід Ґілмор',100,NULL),(100501,'Pink-002','Нік Мейсон',100,NULL),(100502,'Pink-003','Річард Райт',100,NULL);
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -251,4 +251,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-02-11 13:20:49
+-- Dump completed on 2013-02-14 15:17:20
