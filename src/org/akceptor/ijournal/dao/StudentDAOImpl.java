@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.akceptor.ijournal.domain.Lesson;
 import org.akceptor.ijournal.domain.Student;
 import javax.sql.DataSource;
 
@@ -70,6 +71,15 @@ public class StudentDAOImpl implements StudentDAO {
 	@Transactional
 	public ArrayList<Student> findStudentsByGroup(int groupID) {
 		return (ArrayList<Student>) hibernateTemplate.find("from Student where group_id =" + groupID +" order by student_fio");
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public ArrayList<Lesson> getStudentsMarksBySubject(int studentID, int subjectID) {
+		ArrayList<Lesson> ololo = (ArrayList<Lesson>) hibernateTemplate.find("from Lesson where student_id =" + studentID +" and subject_id="+subjectID);
+		
+		
+		return ololo;
 	}
 	
 	public void setDataSource(DataSource dataSource) {

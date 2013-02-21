@@ -23,31 +23,31 @@
 Група: <select name="Group" style="width : 200">
 <c:forEach var="group" items="${groups}">
 <option value="${group.id}">${group.groupName}</option>
-<c:set var="gcount" value="${gcount + 1}" scope="request"/>
 </c:forEach>
 </select>
-</br>
+<br>
  Предмет: <select name="Subject" style="width : 200">
 <c:forEach var="subject" items="${subjects}">
 <option value="${subject.id}">${subject.subjectName}</option>
-<c:set var="scount" value="${scount + 1}" scope="request"/>
 </c:forEach>
 </select>
-</br>
+<br>
 <input type="submit" value="Submit">
 </form>
 </c:if>
 <c:if test="${pageContext.request.method=='POST'}">
-Ви вибрали групу ${selectedGroup.groupName} і предмет ${selectedSubject.subjectName}.<br>
 
 <form name="Submit" action="/myJournal/hello" method="post">
 
-<table border="1"><thead>Журнал групи ${selectedGroup.groupName}</thead>
+
+
+<table border="1"><thead>Журнал групи ${selectedGroup.groupName} - ${selectedSubject.subjectName} ()</thead>
+
 <tr><td>Прізвище студента</td>
 	<c:forEach var="date" items="${subjectDates}"><td>${date}</td>
 	</c:forEach></tr>
 <c:forEach var="member" items="${groupMembers}">
-<tr><td>${member.studentName}</td><c:forEach var="date" items="${subjectDates}"><td><select name="present"/><option value="0"> </option><option value="1">Н</option><option value="1">&#174;</option></select><input type="text" name="mark" maxlength="2" size="2"/></td>
+<tr><td>${member.studentName}</td><c:forEach var="date" items="${subjectDates}"><td><select name="present"/><option value="0"> </option><option value="1">Н</option><option value="1">&#174;</option></select><input type="text" name="mark" maxlength="2" size="2" value="${studentMarks.get(0)[2]}"/></td>
 	</c:forEach></tr>
 </c:forEach>
 </table>

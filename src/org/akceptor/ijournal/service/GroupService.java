@@ -40,6 +40,13 @@ public class GroupService {
 		return (ArrayList<Student>) studentDAO.findStudentsByGroup(groupID);//findStudents();
 	}
 	
+	public int getGroupSizeByID(int groupID){
+		/** 
+		 * 	Returns all group members in ArrayList
+		 */
+		return studentDAO.findStudentsByGroup(groupID).size();//findStudents();
+	}
+	
 	
 	
 }
