@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +18,26 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "student_id")
 	private int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Group getGroup() {
+		return group;
+	}
+
+	public void setGroup(Group group) {
+		this.group = group;
+	}
+
+	public void setBookNr(String bookNr) {
+		this.bookNr = bookNr;
+	}
 
 	@Column(name = "book_nr")
 	private String bookNr;
@@ -27,6 +49,9 @@ public class Student {
     @JoinColumn(name="group_id")
     private Group group;
 
+	@OneToOne
+    @PrimaryKeyJoinColumn
+    private Lesson lesson;
 
 	public String getBookNr() {
 		return bookNr;

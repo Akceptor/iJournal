@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.akceptor.ijournal.dao.StudentDAO;
 import org.akceptor.ijournal.dao.SubjectDAO;
+import org.akceptor.ijournal.domain.MyDate;
 import org.akceptor.ijournal.domain.Group;
 import org.akceptor.ijournal.domain.Lesson;
 import org.akceptor.ijournal.domain.Subject;
@@ -34,26 +35,24 @@ public class SubjectService {
 		return group.getGroupName();
 	}
 	
-	public ArrayList getSubjectDatesByID(int subjectID){
-		ArrayList dates = new ArrayList();
-		dates.add("1.01.2013");
-		dates.add("8.01.2013");
-		dates.add("15.01.2013");
-		dates.add("22.01.2013");
-		dates.add("29.01.2013");
-		dates.add("05.02.2013");
-		dates.add("12.02.2013");
+	public ArrayList<MyDate> getSubjectDatesByID(int subjectID){
+		ArrayList<MyDate> dates = new ArrayList<MyDate>();
+		dates.add(new MyDate(0, "1.01.2013"));
+		dates.add(new MyDate(1, "8.01.2013"));
+		dates.add(new MyDate(2, "15.01.2013"));
+		dates.add(new MyDate(3, "22.01.2013"));
+		dates.add(new MyDate(4, "29.01.2013"));
+		dates.add(new MyDate(5, "05.02.2013"));
+		dates.add(new MyDate(6, "12.02.2013"));
 		return dates;
 	}
 	
 	public ArrayList<Lesson> getStudentsMarkFromSubject (int studentID, int subjectID){
-//		for (Lesson lesson : studentDAO.getStudentsMarksBySubject(studentID, subjectID)){
-//			//System.err.println("----");
-//			//System.err.print(" "+lesson.getMark());
-//		}
-		//System.err.println(" -------------------------------- ");
+		System.out.println("    !!!       StudentID="+studentID+"    subjectID="+subjectID);
 		return studentDAO.getStudentsMarksBySubject(studentID, subjectID);
 		
 	}
+	
+
 	
 }

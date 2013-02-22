@@ -44,10 +44,12 @@
 <table border="1"><thead>Журнал групи ${selectedGroup.groupName} - ${selectedSubject.subjectName} ()</thead>
 
 <tr><td>Прізвище студента</td>
-	<c:forEach var="date" items="${subjectDates}"><td>${date}</td>
+	<c:forEach var="date" items="${subjectDates}"><td>${date.dateString}</td>
 	</c:forEach></tr>
-<c:forEach var="member" items="${groupMembers}">
-<tr><td>${member.studentName}</td><c:forEach var="date" items="${subjectDates}"><td><select name="present"/><option value="0"> </option><option value="1">Н</option><option value="1">&#174;</option></select><input type="text" name="mark" maxlength="2" size="2" value="${studentMarks.get(0)[2]}"/></td>
+
+<c:forEach var="member" items="${groupMembers}" varStatus="studentCounter">
+<tr><td>${member.studentName}</td><c:forEach var="date" items="${subjectDates}" varStatus="dateCounter"><td><select name="present"/><option value="0"> </option><option value="1">Н</option><option value="1">&#174;</option></select><input type="text" name="mark" maxlength="2" size="2" value="${studentMarks.get(studentCounter.count-1)[dateCounter.count-1]}"/></td>
+	
 	</c:forEach></tr>
 </c:forEach>
 </table>

@@ -76,10 +76,9 @@ public class StudentDAOImpl implements StudentDAO {
 	@SuppressWarnings("unchecked")
 	@Transactional
 	public ArrayList<Lesson> getStudentsMarksBySubject(int studentID, int subjectID) {
-		ArrayList<Lesson> ololo = (ArrayList<Lesson>) hibernateTemplate.find("from Lesson where student_id =" + studentID +" and subject_id="+subjectID);
-		
-		
-		return ololo;
+	//return (ArrayList<Lesson>) hibernateTemplate.find("from Lesson where student_id =" + studentID +" and subject_id="+subjectID);		
+	//	System.err.println("            !!!!!!     "+studentID+" : "+subjectID);
+		return (ArrayList<Lesson>) hibernateTemplate.find("select l from Lesson as l where l.student_id=" + studentID +" and l.subject_id="+subjectID);
 	}
 	
 	public void setDataSource(DataSource dataSource) {

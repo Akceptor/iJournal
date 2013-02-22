@@ -1,13 +1,12 @@
 package org.akceptor.ijournal.domain;
 
-import java.util.Set;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -36,9 +35,6 @@ public class Lesson {
 	
 	@Column(name = "absense")
 	private int absense;
-	
-//	@ManyToMany(mappedBy = "students")
-//    private Set<Student> students;
 	
 	public int getLesson_id() {
 		return lesson_id;
@@ -110,8 +106,8 @@ public class Lesson {
 	}
 
 
-//	@ManyToMany(mappedBy = "subjects")
-//    private Set<Subject> subjects;
+	@OneToOne(mappedBy="lesson", cascade=CascadeType.ALL)
+    private Student student;
 	
 	
 	public Lesson() {
