@@ -48,7 +48,7 @@ public class SubjectService {
 	}
 	
 	public ArrayList<Lesson> getStudentsMarkFromSubject (int studentID, int subjectID){
-		System.out.println("    !!!       StudentID="+studentID+"    subjectID="+subjectID);
+		//System.out.println("    !!!       StudentID="+studentID+"    subjectID="+subjectID);
 		return studentDAO.getStudentsMarksBySubject(studentID, subjectID);
 		
 	}

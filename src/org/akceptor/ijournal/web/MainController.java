@@ -32,25 +32,33 @@ public class MainController {
 	@RequestMapping(method = RequestMethod.POST)
 	//
 	public ModelAndView showSelectedOptipons(HttpServletRequest request) {
-
 		String selectedGroup = "none";
 		String selectedSubject = "none";
-		// Group and subject selected. Show them
+			// Group and subject selected. Show them
 		if (request != null) {
 			// Map<String, String[]> parameters = request.getParameterMap();
 			selectedGroup = request.getParameter("Group");
 			selectedSubject = request.getParameter("Subject");
+			
 		}
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("hello");
 
 		if (selectedGroup != null) {
+			//Came from group selection
 			currentGroup = groupService.getGroupByID(Integer
 					.parseInt(selectedGroup));
 			currentSubject = subjectService.getSubjectByID(Integer
 					.parseInt(selectedSubject));
-		}
+		} else {
+			//Came from marks Submit
+						
+		};
+		
+		System.err.println("OK");
+		
+		
 		try {
 			mav.addObject("selectedGroup", currentGroup);
 			mav.addObject("selectedSubject", currentSubject);
@@ -84,11 +92,9 @@ public class MainController {
 
 		} catch (Exception e) {
 			return mav;
-		}
-		;
-		// mav.addObject(attributeName, attributeValue);
-		// } else
-		// {
+		};
+		
+			
 		// mav.addObject("selectedGroup", currentGroup);
 		// mav.addObject("selectedSubject",
 		// subjectService.getSubjectByID(currentGroup.getId()));

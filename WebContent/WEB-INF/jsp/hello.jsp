@@ -37,7 +37,7 @@
 </c:if>
 <c:if test="${pageContext.request.method=='POST'}">
 
-<form name="Submit" action="/myJournal/hello" method="post">
+<form name="Submit" action="/myJournal/ok" method="post">
 
 
 
@@ -48,7 +48,7 @@
 	</c:forEach></tr>
 
 <c:forEach var="member" items="${groupMembers}" varStatus="studentCounter">
-<tr><td>${member.studentName}</td><c:forEach var="date" items="${subjectDates}" varStatus="dateCounter"><td><select name="present"/><option value="0"> </option><option value="1">Н</option><option value="1">&#174;</option></select><input type="text" name="mark" maxlength="2" size="2" value="${studentMarks.get(studentCounter.count-1)[dateCounter.count-1]}"/></td>
+<tr><td><input type="text" name="student" value="${member.studentName}" readonly/></td><c:forEach var="date" items="${subjectDates}" varStatus="dateCounter"><td><select name="present"/><option value="0"> </option><option value="1">Н</option><option value="1">&#174;</option></select><input type="text" name="mark" maxlength="2" size="2" value="${studentMarks.get(studentCounter.count-1)[dateCounter.count-1]}"/></td>
 	
 	</c:forEach></tr>
 </c:forEach>
