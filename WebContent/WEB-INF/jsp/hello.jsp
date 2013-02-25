@@ -44,7 +44,7 @@
 <table border="1"><thead>Журнал групи ${selectedGroup.groupName} - ${selectedSubject.subjectName} ()</thead>
 
 <tr><td>Прізвище студента</td>
-	<c:forEach var="date" items="${subjectDates}"><td>${date.dateString}</td>
+	<c:forEach var="date" items="${subjectDates}"><td>${date}</td>
 	</c:forEach></tr>
 
 <c:forEach var="member" items="${groupMembers}" varStatus="studentCounter">

@@ -1,12 +1,14 @@
 package org.akceptor.ijournal.domain;
 
-import javax.persistence.CascadeType;
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,7 +30,7 @@ public class Lesson {
 	private int subject_id;
 	
 	@Column(name = "lesson_date")
-	private String lesson_date;
+	private Date lesson_date;
 	
 	@Column(name = "mark")
 	private int mark;
@@ -76,12 +78,12 @@ public class Lesson {
 	}
 
 
-	public String getLesson_date() {
+	public Date getDate() {
 		return lesson_date;
 	}
 
 
-	public void setLesson_date(String lesson_date) {
+	public void setDate(Date lesson_date) {
 		this.lesson_date = lesson_date;
 	}
 
@@ -105,9 +107,9 @@ public class Lesson {
 		this.absense = absense;
 	}
 
-
-	@OneToOne(mappedBy="lesson", cascade=CascadeType.ALL)
-    private Student student;
+	@ManyToOne
+    @JoinColumn(name="student_id", referencedColumnName = "student_id", insertable = false, updatable = false)
+    private Student students;
 	
 	
 	public Lesson() {

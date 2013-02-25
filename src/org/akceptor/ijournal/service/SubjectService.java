@@ -6,7 +6,6 @@ import org.akceptor.ijournal.dao.StudentDAO;
 import org.akceptor.ijournal.dao.SubjectDAO;
 import org.akceptor.ijournal.domain.MyDate;
 import org.akceptor.ijournal.domain.Group;
-import org.akceptor.ijournal.domain.Lesson;
 import org.akceptor.ijournal.domain.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,13 +45,6 @@ public class SubjectService {
 		dates.add(new MyDate(6, "12.02.2013"));
 		return dates;
 	}
-	
-	public ArrayList<Lesson> getStudentsMarkFromSubject (int studentID, int subjectID){
-		//System.out.println("    !!!       StudentID="+studentID+"    subjectID="+subjectID);
-		return studentDAO.getStudentsMarksBySubject(studentID, subjectID);
-		
-	}
-	
 
 	
 }

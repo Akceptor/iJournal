@@ -7,6 +7,7 @@ import org.akceptor.ijournal.domain.Lesson;
 import org.akceptor.ijournal.domain.Student;
 import org.akceptor.ijournal.domain.Subject;
 import org.akceptor.ijournal.service.GroupService;
+import org.akceptor.ijournal.service.LessonService;
 import org.akceptor.ijournal.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,8 @@ public class MainController {
 	GroupService groupService;
 	@Autowired
 	SubjectService subjectService;
+	@Autowired
+	LessonService lessonService;
 	private static Group currentGroup;
 	private static Subject currentSubject;
 
@@ -60,47 +63,43 @@ public class MainController {
 		
 		
 		try {
+			//adding selected group and subject info
 			mav.addObject("selectedGroup", currentGroup);
 			mav.addObject("selectedSubject", currentSubject);
+			//adding student list
 			mav.addObject("groupMembers",
 					groupService.getGroupMembersByID(currentGroup.getId()));
-			mav.addObject("subjectDates",
-					subjectService.getSubjectDatesByID(currentSubject.getId()));
+			
+			
 			// adding students marks for studentID & subjectID
-
 			ArrayList<ArrayList<Integer>> allStudentMarks = new ArrayList<ArrayList<Integer>>();
-			//int groupSize = groupService.getGroupSizeByID(currentGroup.getId());
-			//System.err.println("Students in group " + groupSize);
-			for (Student student : groupService
+				for (Student student : groupService
 					.getGroupMembersByID(currentGroup.getId())) {// for each
 																	// student
 				ArrayList<Integer> studentMarks = new ArrayList<Integer>();
-				//int marksNumber = subjectService.getStudentsMarkFromSubject(student.getId(), currentSubject.getId()).size();
-				//System.err.println("Marks quantity: " + marksNumber);
-
-				for (Lesson lesson : subjectService.getStudentsMarkFromSubject(
+				
+				for (Lesson lesson : lessonService.getStudentsMarkFromSubject(
 						student.getId(), currentSubject.getId())) {// get all
 																	// marks
 					studentMarks.add(lesson.getMark());
 				}
 				allStudentMarks.add(studentMarks);
-				// System.err.print(" "+allStudentMarks);
+				
 
 			}
 			System.err.print(" " + allStudentMarks);
 			mav.addObject("studentMarks", allStudentMarks);
+	
+			//adding dates
+			mav.addObject("subjectDates",lessonService.getLessonDatesBySubject(currentSubject.getId(), currentGroup.getId()));
+
+			
+			
 
 		} catch (Exception e) {
 			return mav;
 		};
 		
-			
-		// mav.addObject("selectedGroup", currentGroup);
-		// mav.addObject("selectedSubject",
-		// subjectService.getSubjectByID(currentGroup.getId()));
-		// mav.addObject("groupMembers", groupService.getGroupMembersByID(1));
-		// mav.addObject("subjectDates", subjectService.getSubjectDatesByID(1));
-		// };
 		return mav;
 	}
 
