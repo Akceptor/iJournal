@@ -55,6 +55,12 @@ public class StudentDAOImpl implements StudentDAO {
 		hibernateTemplate.flush();
 	}
 
+//	@Transactional
+//	public int getStudentIDByFIO(String studentFIO) {
+//		System.out.println("               DAO ");
+//		return hibernateTemplate.get(Student.class, studentFIO).getId();
+//	}
+	
 	@Transactional
 	public Student getStudentByFIO(String studentFIO) {
 		return hibernateTemplate.get(Student.class, studentFIO);
@@ -72,13 +78,6 @@ public class StudentDAOImpl implements StudentDAO {
 		return (ArrayList<Student>) hibernateTemplate.find("from Student where group_id =" + groupID +" order by student_fio");
 	}
 	
-//	@SuppressWarnings("unchecked")
-//	@Transactional
-//	public ArrayList<Lesson> getStudentsMarksBySubject(int studentID, int subjectID) {
-//	//return (ArrayList<Lesson>) hibernateTemplate.find("from Lesson where student_id =" + studentID +" and subject_id="+subjectID);		
-//	//	System.err.println("            !!!!!!     "+studentID+" : "+subjectID);
-//		return (ArrayList<Lesson>) hibernateTemplate.find("select l from Lesson as l where l.student_id=" + studentID +" and l.subject_id="+subjectID);
-//	}
 	
 	public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -96,5 +95,11 @@ public class StudentDAOImpl implements StudentDAO {
 	@Transactional
 	public Student getStudentByBookNr(String bookNr) {
 		return hibernateTemplate.get(Student.class, bookNr);
+	}
+	
+	@Override
+	@Transactional
+	public String getStudentFIOByID(int studentID) {
+		return hibernateTemplate.get(Student.class, studentID).getStudentName();
 	}
 }

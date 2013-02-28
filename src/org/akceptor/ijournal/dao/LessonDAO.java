@@ -14,4 +14,8 @@ public interface LessonDAO {
 	public List<Lesson> findLessons();
 	public ArrayList<Lesson> getStudentsMarksBySubject(int studentID, int subjectID);
 	public ArrayList<Date> getLessonDatesBySubjectAndGroup(int subjectID, int groupID);
+	public ArrayList<Lesson> getMarksBySubject(int groupID, int subjectID);
+	public Lesson getLessonByID(int lessonID);
+	
+	public ArrayList<Lesson> getLessonsBySubject(int subjectID);
 }

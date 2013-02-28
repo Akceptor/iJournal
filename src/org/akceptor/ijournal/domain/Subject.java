@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name = "subjects")
 public class Subject {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "subject_id")
 	private int id;
 
@@ -35,9 +35,9 @@ public class Subject {
 	}
 	
 	
-//	@OneToOne(cascade = { CascadeType.REFRESH }, fetch = FetchType.EAGER)
-//	@JoinTable(name = "groups", joinColumns = @JoinColumn(name = "group_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
-//	private int group_id;
+//	@ManyToOne
+//    @JoinColumn(name="subject_id", referencedColumnName = "subject_id", insertable = false, updatable = false)
+//    private Lesson lessons;
 
 	
 

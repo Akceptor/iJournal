@@ -1,7 +1,6 @@
 package org.akceptor.ijournal.domain;
 
 import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,10 +10,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
-@Table(name = "lesson")
+@Table(name = "lesson", catalog="iJournal")
+//Tried this thing: @org.hibernate.annotations.Entity(dynamicUpdate = true, dynamicInsert = true, selectBeforeUpdate = true)
+//doesn't work, so I did this stupid way in OkController.java
 
-public class Lesson {
+public class Lesson implements java.io.Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "lesson_id")
@@ -111,6 +113,12 @@ public class Lesson {
     @JoinColumn(name="student_id", referencedColumnName = "student_id", insertable = false, updatable = false)
     private Student students;
 	
+	@ManyToOne
+    @JoinColumn(name="teacher_id", referencedColumnName = "teacher_id", insertable = false, updatable = false)
+    private Teacher teachers;
+	
+//	@OneToMany(mappedBy="lesson_id")
+//    private Set<Lesson> lessons;
 	
 	public Lesson() {
 	}

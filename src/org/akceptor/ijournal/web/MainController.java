@@ -59,9 +59,6 @@ public class MainController {
 						
 		};
 		
-		System.err.println("OK");
-		
-		
 		try {
 			//adding selected group and subject info
 			mav.addObject("selectedGroup", currentGroup);
@@ -73,23 +70,26 @@ public class MainController {
 			
 			// adding students marks for studentID & subjectID
 			ArrayList<ArrayList<Integer>> allStudentMarks = new ArrayList<ArrayList<Integer>>();
+			ArrayList<ArrayList<Integer>> allLessonIDs = new ArrayList<ArrayList<Integer>>();
 				for (Student student : groupService
 					.getGroupMembersByID(currentGroup.getId())) {// for each
 																	// student
 				ArrayList<Integer> studentMarks = new ArrayList<Integer>();
+				ArrayList<Integer> lesonIDs = new ArrayList<Integer>();
 				
 				for (Lesson lesson : lessonService.getStudentsMarkFromSubject(
 						student.getId(), currentSubject.getId())) {// get all
 																	// marks
 					studentMarks.add(lesson.getMark());
+					lesonIDs.add(lesson.getLesson_id());
 				}
 				allStudentMarks.add(studentMarks);
-				
+				allLessonIDs.add(lesonIDs);
 
 			}
 			System.err.print(" " + allStudentMarks);
 			mav.addObject("studentMarks", allStudentMarks);
-	
+			mav.addObject("lessonIDs", allLessonIDs);
 			//adding dates
 			mav.addObject("subjectDates",lessonService.getLessonDatesBySubject(currentSubject.getId(), currentGroup.getId()));
 

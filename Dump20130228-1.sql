@@ -74,21 +74,26 @@ DROP TABLE IF EXISTS `lesson`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `lesson` (
-  `lesson_id` int(11) NOT NULL,
-  `stusent_id` int(11) NOT NULL,
-  `teacher_id` int(11) NOT NULL,
+  `lesson_id` int(11) NOT NULL AUTO_INCREMENT,
+  `student_id` int(11) NOT NULL DEFAULT '0',
+  `teacher_id` int(11) NOT NULL DEFAULT '0',
   `subject_id` int(11) NOT NULL,
-  `lesson_date` date NOT NULL,
+  `lesson_date` date DEFAULT NULL,
   `mark` int(11) NOT NULL DEFAULT '0',
-  `absense` varchar(1) NOT NULL,
+  `absense` varchar(1) NOT NULL DEFAULT '0',
+  `lesson_number` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`lesson_id`),
+  UNIQUE KEY `lesson_id_UNIQUE` (`lesson_id`),
   KEY `fk_student_id_idx` (`subject_id`),
   KEY `fk_subject_id_idx` (`subject_id`),
   KEY `fk_teacher_id_idx` (`teacher_id`),
-  CONSTRAINT `fk_student_id` FOREIGN KEY (`subject_id`) REFERENCES `students` (`student_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_subject_id` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`subject_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_teacher_id` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`teacher_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `fk_student_id` (`student_id`),
+  KEY `fk_subject_id_idx1` (`subject_id`),
+  KEY `fk_teacher_id_idx1` (`teacher_id`),
+  CONSTRAINT `fk_teacher_id` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`teacher_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_student_id` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_subject_id` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`subject_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,6 +102,7 @@ CREATE TABLE `lesson` (
 
 LOCK TABLES `lesson` WRITE;
 /*!40000 ALTER TABLE `lesson` DISABLE KEYS */;
+INSERT INTO `lesson` VALUES (1,1,1,1,'2013-02-01',1,'0',0),(2,1,1,1,'2013-02-08',1,'0',0),(3,1,1,1,'2013-02-15',1,'0',0),(4,1,1,1,'2013-02-22',0,'0',0),(5,1,1,1,'2013-03-01',0,'0',0),(6,1,1,1,'2013-03-08',0,'0',0),(7,2,1,1,'2013-02-01',0,'0',0),(8,2,1,1,'2013-02-08',0,'0',0),(9,2,1,1,'2013-02-15',0,'0',0),(10,2,1,1,'2013-02-22',0,'0',0),(11,2,1,1,'2013-03-01',0,'0',0),(12,2,1,1,'2013-03-08',5,'0',0),(13,3,1,1,'2013-02-01',1,'0',0),(14,3,1,1,'2013-02-08',0,'0',0),(15,3,1,1,'2013-02-15',0,'0',0),(16,3,1,1,'2013-02-22',5,'0',0),(17,3,1,1,'2013-03-01',0,'0',0),(18,3,1,1,'2013-03-08',0,'0',0),(19,4,1,1,'2013-02-01',0,'0',0),(20,4,1,1,'2013-02-08',0,'0',0),(21,4,1,1,'2013-02-15',0,'0',0),(22,4,1,1,'2013-02-22',0,'0',0),(23,4,1,1,'2013-03-01',0,'0',0),(24,4,1,1,'2013-03-08',0,'0',0),(25,5,1,1,'2013-02-01',0,'0',0),(26,5,1,1,'2013-02-08',0,'0',0),(27,5,1,1,'2013-02-15',0,'0',0),(28,5,1,1,'2013-02-22',0,'0',0),(29,5,1,1,'2013-03-01',0,'0',0),(30,5,1,1,'2013-03-08',0,'0',0),(31,6,1,1,'2013-02-01',1,'0',0),(32,6,1,1,'2013-02-08',0,'0',0),(33,6,1,1,'2013-02-15',0,'0',0),(34,6,1,1,'2013-02-22',0,'0',0),(35,6,1,1,'2013-03-01',5,'0',0),(36,6,1,1,'2013-03-08',0,'0',0),(37,1,1,2,'2013-02-02',0,'0',0),(38,1,1,2,'2013-02-09',0,'0',0),(39,1,1,2,'2013-02-16',0,'0',0),(40,1,1,2,'2013-02-23',0,'0',0),(41,1,1,2,'2013-03-02',0,'0',0),(42,1,1,2,'2013-03-09',0,'0',0),(43,2,1,2,'2013-02-02',0,'0',0),(44,2,1,2,'2013-02-09',0,'0',0),(45,2,1,2,'2013-02-16',0,'0',0),(46,2,1,2,'2013-02-23',0,'0',0),(47,2,1,2,'2013-03-02',0,'0',0),(48,2,1,2,'2013-03-09',0,'0',0);
 /*!40000 ALTER TABLE `lesson` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,7 +191,7 @@ CREATE TABLE `teachers` (
 
 LOCK TABLES `teachers` WRITE;
 /*!40000 ALTER TABLE `teachers` DISABLE KEYS */;
-INSERT INTO `teachers` VALUES (1,100,'Ostapiv');
+INSERT INTO `teachers` VALUES (1,100,'Ostapiv'),(2,2,'Norris');
 /*!40000 ALTER TABLE `teachers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -238,7 +244,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (100,'test','098f6bcd4621d373cade4e832627b4f6',1);
+INSERT INTO `users` VALUES (2,'Norris','098f6bcd4621d373cade4e832627b4f6',1),(100,'test','098f6bcd4621d373cade4e832627b4f6',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -251,4 +257,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-02-14 15:17:20
+-- Dump completed on 2013-02-28 16:52:16

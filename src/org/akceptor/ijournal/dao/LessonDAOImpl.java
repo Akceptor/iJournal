@@ -10,6 +10,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.akceptor.ijournal.domain.Lesson;
+
 import javax.sql.DataSource;
 
 @Repository
@@ -54,10 +55,27 @@ public class LessonDAOImpl implements LessonDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Transactional
+	public ArrayList<Lesson> getMarksBySubject(int groupID, int subjectID) {
+	
+		return (ArrayList<Lesson>) hibernateTemplate.find("select l from Lesson as l where l.subject_id="+subjectID);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Transactional
 	public ArrayList<Date> getLessonDatesBySubjectAndGroup(int subjectID, int groupID) {
 		//System.err.println("LessonDAO");
 		return (ArrayList<Date>) hibernateTemplate.find("select distinct l.lesson_date from Lesson as l where l.subject_id="+subjectID);//+" and l.group_id="+groupID);
 	}
+	
+	/*
+	 * Gets list of lessons per selected subject
+	 */
+	@SuppressWarnings("unchecked")
+	@Transactional 
+	public ArrayList<Lesson> getLessonsBySubject(int subjectID) {
+		return (ArrayList<Lesson>) hibernateTemplate.find("from Lesson as l where l.subject_id="+subjectID);
+	}
+	
 	
 	public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -95,6 +113,11 @@ public class LessonDAOImpl implements LessonDAO {
 	public List<Lesson> findLessons() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Transactional
+	public Lesson getLessonByID(int lessonID) {
+			return hibernateTemplate.get(Lesson.class, lessonID);
 	}
 
 }

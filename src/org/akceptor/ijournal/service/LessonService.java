@@ -31,4 +31,32 @@ public class LessonService {
 		
 	}
 	
+	public void updateLesson(Lesson lesson){
+		lessonDAO.updateLesson(lesson);
+		
+	}
+	
+public ArrayList<Lesson> getMarksFromSubject (int groupID, int subjectID){
+		
+		return lessonDAO.getMarksBySubject(groupID, subjectID);
+		
+	}
+
+public int getSubjectByLessonID(int lessonID){
+	//System.err.println("LessonService");
+	//System.err.println(lessonDAO.getLessonByID(lessonID).getSubject_id());
+	return lessonDAO.getLessonByID(lessonID).getSubject_id();
+		
+}
+
+public ArrayList<Lesson> getLessonsBySubject(int subjectID){
+	return lessonDAO.getLessonsBySubject(subjectID);
+}
+
+public Lesson getLessonByID(int lessonID){
+	return lessonDAO.getLessonByID(lessonID);
+	
+}
+
+
 }
