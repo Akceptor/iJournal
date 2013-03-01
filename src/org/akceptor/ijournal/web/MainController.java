@@ -72,7 +72,9 @@ public class MainController {
 			ArrayList<ArrayList<Integer>> allStudentMarks = new ArrayList<ArrayList<Integer>>();
 			ArrayList<ArrayList<Integer>> allLessonIDs = new ArrayList<ArrayList<Integer>>();
 			ArrayList<ArrayList<Integer>> allAbsenceMarks = new ArrayList<ArrayList<Integer>>();
-			
+			ArrayList<Integer> totalMarks = new ArrayList<Integer>();
+			ArrayList<Integer> totalAbs = new ArrayList<Integer>();
+			ArrayList<Integer> totalAbsOk = new ArrayList<Integer>();
 				for (Student student : groupService
 					.getGroupMembersByID(currentGroup.getId())) {// for each
 																	// student
@@ -80,22 +82,42 @@ public class MainController {
 				ArrayList<Integer> lesonIDs = new ArrayList<Integer>();
 				ArrayList<Integer> absenceMarks = new ArrayList<Integer>();
 				
+				int totalMark = 0; //Summary for all lessons per student
+				int totalAbsence = 0;//Summary for "H" marks
+				int totalAbsenceOk = 0;//Summary for "R" marks
 				for (Lesson lesson : lessonService.getStudentsMarkFromSubject(
 						student.getId(), currentSubject.getId())) {// get all
 																	// marks
 					studentMarks.add(lesson.getMark());
+					totalMark=totalMark+lesson.getMark();
+					if (lesson.getAbsense()==1){
+						totalAbsence=totalAbsence+lesson.getAbsense();
+					}
+					if (lesson.getAbsense()==2){
+						totalAbsenceOk=totalAbsenceOk+lesson.getAbsense()/2;
+					}
 					lesonIDs.add(lesson.getLesson_id());
 					absenceMarks.add(lesson.getAbsense());
+					
 				}
+				
+				totalMarks.add(totalMark);//add summary score
+				totalAbs.add(totalAbsence);//add summary score
+				totalAbsOk.add(totalAbsenceOk);//add summary score for worked-out absences
 				allStudentMarks.add(studentMarks);
 				allLessonIDs.add(lesonIDs);
 				allAbsenceMarks.add(absenceMarks);
 
 			}
+			//mav.addObject("studentMarks", allStudentMarks);	
+				
 			System.err.print(" " + allStudentMarks);
 			mav.addObject("studentMarks", allStudentMarks);
+			mav.addObject("totalMark", totalMarks);
 			mav.addObject("lessonIDs", allLessonIDs);
 			mav.addObject("absenceMarks", allAbsenceMarks);
+			mav.addObject("totalAbs", totalAbs);
+			mav.addObject("totalAbsOk", totalAbsOk);
 			//adding dates
 			mav.addObject("subjectDates",lessonService.getLessonDatesBySubject(currentSubject.getId(), currentGroup.getId()));
 

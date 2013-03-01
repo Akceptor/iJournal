@@ -15,7 +15,7 @@ public class StudentController {
 		public ModelAndView studentPage(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("student");
-		//System.out.println(request.getContentLength());
+		
 		return mav;
 	}
 
