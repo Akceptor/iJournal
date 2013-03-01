@@ -71,25 +71,31 @@ public class MainController {
 			// adding students marks for studentID & subjectID
 			ArrayList<ArrayList<Integer>> allStudentMarks = new ArrayList<ArrayList<Integer>>();
 			ArrayList<ArrayList<Integer>> allLessonIDs = new ArrayList<ArrayList<Integer>>();
+			ArrayList<ArrayList<Integer>> allAbsenceMarks = new ArrayList<ArrayList<Integer>>();
+			
 				for (Student student : groupService
 					.getGroupMembersByID(currentGroup.getId())) {// for each
 																	// student
 				ArrayList<Integer> studentMarks = new ArrayList<Integer>();
 				ArrayList<Integer> lesonIDs = new ArrayList<Integer>();
+				ArrayList<Integer> absenceMarks = new ArrayList<Integer>();
 				
 				for (Lesson lesson : lessonService.getStudentsMarkFromSubject(
 						student.getId(), currentSubject.getId())) {// get all
 																	// marks
 					studentMarks.add(lesson.getMark());
 					lesonIDs.add(lesson.getLesson_id());
+					absenceMarks.add(lesson.getAbsense());
 				}
 				allStudentMarks.add(studentMarks);
 				allLessonIDs.add(lesonIDs);
+				allAbsenceMarks.add(absenceMarks);
 
 			}
 			System.err.print(" " + allStudentMarks);
 			mav.addObject("studentMarks", allStudentMarks);
 			mav.addObject("lessonIDs", allLessonIDs);
+			mav.addObject("absenceMarks", allAbsenceMarks);
 			//adding dates
 			mav.addObject("subjectDates",lessonService.getLessonDatesBySubject(currentSubject.getId(), currentGroup.getId()));
 

@@ -32,6 +32,7 @@ public class OkController {
 		Lesson lesson;
 		int studentID;
 		int mark;
+		int absence;
 		int lessonID = 0;
 		for (int i=0;i<request.getParameterValues("student").length;i++)//get students quantity as an appropriate arrays length
 		{
@@ -53,8 +54,10 @@ public class OkController {
 					//trying parse current student's mark and corresponding lesson ID
 					mark = Integer.parseInt(request.getParameterValues("mark")[j]);
 					lessonID = Integer.parseInt(request.getParameterValues("lessonid")[j]);
+					absence = Integer.parseInt(request.getParameterValues("present")[j]);
 				} catch (Exception e) {
 					mark=0;
+					absence = 0;
 					lessonID=0;//not existing lesson ID
 				}
 				System.out.print(lessonID+" ");//marks
@@ -68,6 +71,8 @@ public class OkController {
 				lesson.setStudent_id(studentID);
 				//set mark 4 that student
 				lesson.setMark(mark);
+				//set absence flag 4 that student
+				lesson.setAbsense(absence);
 				//set ID 4 that lesson
 				lesson.setLesson_id(lessonID);
 				
