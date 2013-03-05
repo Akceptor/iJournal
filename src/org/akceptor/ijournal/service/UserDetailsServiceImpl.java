@@ -16,12 +16,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.akceptor.ijournal.dao.UserDAO;
+import org.akceptor.ijournal.dao.UserDetailsDAO;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 	Logger logger = Logger.getLogger(UserDetailsServiceImpl.class);
 	@Autowired
 	private UserDAO userDAO;
+	@Autowired
+	private UserDetailsDAO userDetailsDAO;
 
 	@Transactional
 	public UserDetails loadUserByUsername(String userName)
@@ -31,12 +34,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		if (userFromDAO == null) {
 			throw new BadCredentialsException("Bad credentials");
 		}
+		System.err.println(userDetailsDAO.getUserRoleByID(userDAO
+				.getUserByName(userName).getUserID()).getAuthority());
+
 		List<GrantedAuthority> grantedAuthorityList = new ArrayList<GrantedAuthority>(
 				1);
-		grantedAuthorityList.add(new GrantedAuthorityImpl("ROLE_USER"));
+		grantedAuthorityList.add(new GrantedAuthorityImpl(userDetailsDAO.getUserRoleByID(userDAO
+				.getUserByName(userName).getUserID()).getAuthority()));
+		//<intercept-url pattern="/**" access="ROLE_USER" />
 		User user = new User(userFromDAO.getUsername(),
 				userFromDAO.getPassword(), true, true, true, true,
 				grantedAuthorityList);
+		System.out.println(user.getAuthorities());
 		return user;
 	}
 }

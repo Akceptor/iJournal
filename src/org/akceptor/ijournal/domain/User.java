@@ -17,6 +17,17 @@ public class User {
 
 	@Column(name = "password")
 	private String password;
+	
+	@Column(name = "user_id")
+	private int userID;
+
+	public int getUserID() {
+		return userID;
+	}
+
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
 
 	public String getPassword() {
 		return password;
