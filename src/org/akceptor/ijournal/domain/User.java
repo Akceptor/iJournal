@@ -20,7 +20,7 @@ public class User {
 	
 	@Column(name = "user_id")
 	private int userID;
-
+	
 	public int getUserID() {
 		return userID;
 	}
@@ -47,5 +47,6 @@ public class User {
 	public void setUsername(String login) {
 		this.username = login;
 	}
+	
 
 }

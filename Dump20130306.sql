@@ -134,7 +134,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (1,'mvt-00001','Ivanov I.I.',1,NULL),(2,'mvt-00002','Petrov P.P.',1,NULL),(3,'mvt-00003','Ivanov I.S.',1,NULL),(4,'mvt-00012','Sidirov S.S.',2,NULL),(5,'mvt-00021','Kozloff K.Z.',2,NULL),(6,'mvt-00022','Jonson J.S.',1,NULL),(7,'Chuch=k','Norris Carlos Ray',3,NULL),(100500,'Pink-001','Девід Ґілмор',100,NULL),(100501,'Pink-002','Нік Мейсон',100,NULL),(100502,'Pink-003','Річард Райт',100,NULL);
+INSERT INTO `students` VALUES (1,'mvt-00001','Ivanov I.I.',1,1),(2,'mvt-00002','Petrov P.P.',1,2),(3,'mvt-00003','Ivanov I.S.',1,3),(4,'mvt-00012','Sidirov S.S.',2,4),(5,'mvt-00021','Kozloff K.Z.',2,5),(6,'mvt-00022','Jonson J.S.',1,6),(7,'Chuch=k','Norris Carlos Ray',3,7),(100500,'Pink-001','Девід Ґілмор',100,NULL),(100501,'Pink-002','Нік Мейсон',100,NULL),(100502,'Pink-003','Річард Райт',100,NULL);
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,7 +218,7 @@ CREATE TABLE `user_roles` (
 
 LOCK TABLES `user_roles` WRITE;
 /*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
-INSERT INTO `user_roles` VALUES (1,100,'ROLE_USER');
+INSERT INTO `user_roles` VALUES (1,1,'ROLE_STUDENT'),(2,2,'ROLE_STUDENT'),(3,3,'ROLE_STUDENT'),(4,4,'ROLE_STUDENT'),(5,5,'ROLE_STUDENT'),(6,6,'ROLE_STUDENT'),(7,7,'ROLE_STUDENT'),(8,8,'ROLE_STUDENT'),(9,9,'ROLE_STUDENT'),(100,100,'ROLE_USER');
 /*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -244,7 +244,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'Norris','098f6bcd4621d373cade4e832627b4f6',1),(100,'test','098f6bcd4621d373cade4e832627b4f6',1);
+INSERT INTO `users` VALUES (1,'mvt-00001','098f6bcd4621d373cade4e832627b4f6',1),(2,'Norris','098f6bcd4621d373cade4e832627b4f6',1),(3,'mvt-00003','098f6bcd4621d373cade4e832627b4f6',1),(4,'mvt-00004','098f6bcd4621d373cade4e832627b4f6',1),(5,'mvt-00005','098f6bcd4621d373cade4e832627b4f6',1),(6,'mvt-00006','098f6bcd4621d373cade4e832627b4f6',1),(7,'student','098f6bcd4621d373cade4e832627b4f6',1),(8,'mvt-00008','098f6bcd4621d373cade4e832627b4f6',1),(9,'mvt-00009','098f6bcd4621d373cade4e832627b4f6',1),(100,'test','098f6bcd4621d373cade4e832627b4f6',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -257,4 +257,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-03-01 13:58:12
+-- Dump completed on 2013-03-06 11:24:37

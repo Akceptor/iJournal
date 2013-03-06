@@ -2,6 +2,7 @@ package org.akceptor.ijournal.web;
 
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
+
 import org.akceptor.ijournal.domain.Group;
 import org.akceptor.ijournal.domain.Lesson;
 import org.akceptor.ijournal.domain.Student;
@@ -141,5 +142,5 @@ public class MainController {
 		mav.addObject("subjects", subjectService.getSubjects());
 		return mav;
 	}
-
+	
 }
