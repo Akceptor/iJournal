@@ -1,10 +1,13 @@
 package org.akceptor.ijournal.domain;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +20,9 @@ public class Subject {
 
 	@Column(name = "subject_name")
 	private String subjectName;
+	
+	 @OneToMany
+	 public Set<Lesson> lessons;
 	
 	public int getId() {
 		return id;
@@ -35,9 +41,9 @@ public class Subject {
 	}
 	
 	
-//	@ManyToOne
-//    @JoinColumn(name="subject_id", referencedColumnName = "subject_id", insertable = false, updatable = false)
-//    private Lesson lessons;
+//		@ManyToOne
+//	    @JoinColumn(name="subject_id", referencedColumnName = "subject_id", insertable = false, updatable = false)
+//	    private Lesson lessons;
 
 	
 

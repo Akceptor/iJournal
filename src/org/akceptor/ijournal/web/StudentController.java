@@ -44,28 +44,20 @@ public class StudentController {
 		userID = studentService.getStudentIDByUserID(userID);
 		System.err.println("Student'z ID is " + userID);
 
-		mav.addObject("subjectList",
-				subjectService.findSubjectsByStudentID(userID));
+		mav.addObject("subjectList",subjectService.findSubjectsByStudentID(userID));
 
 		// adding students marks for studentID & subjectID
 		// TODO Move this to Service layer
 		ArrayList<ArrayList<Date>> allLessonDates = new ArrayList<ArrayList<Date>>();
 		ArrayList<ArrayList<Integer>> allMarks = new ArrayList<ArrayList<Integer>>();
 
-		for (Student student : studentService.getStudentByID(userID)) {// for
-																		// each
-																		// student
-			for (Subject subject : subjectService.findSubjects()) {// get all
-				 { // marks
+					for (Subject subject : subjectService.findSubjects()) {
+						// get all marks
 					allLessonDates.add(lessonService
 							.getLessonDatesBySubject(subject.getId()));
 					allMarks.add(lessonService.getStudentsMarkFromSubject(
 							userID, subject.getId()));
-				}
-
-			}
-
-		}
+					}
 
 		mav.addObject("lessonDates", allLessonDates);
 

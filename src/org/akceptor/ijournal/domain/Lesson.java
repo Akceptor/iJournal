@@ -25,9 +25,6 @@ public class Lesson implements java.io.Serializable{
 	@Column(name = "student_id")
 	private int student_id;
 	
-	@Column(name = "teacher_id")
-	private int teacher_id;
-	
 	@Column(name = "subject_id")
 	private int subject_id;
 	
@@ -57,16 +54,6 @@ public class Lesson implements java.io.Serializable{
 
 	public void setStudent_id(int student_id) {
 		this.student_id = student_id;
-	}
-
-
-	public int getTeacher_id() {
-		return teacher_id;
-	}
-
-
-	public void setTeacher_id(int teacher_id) {
-		this.teacher_id = teacher_id;
 	}
 
 
@@ -114,11 +101,8 @@ public class Lesson implements java.io.Serializable{
     private Student students;
 	
 	@ManyToOne
-    @JoinColumn(name="teacher_id", referencedColumnName = "teacher_id", insertable = false, updatable = false)
-    private Teacher teachers;
-	
-//	@OneToMany(mappedBy="lesson_id")
-//    private Set<Lesson> lessons;
+	@JoinColumn(name="subject_id", referencedColumnName = "subject_id", insertable = false, updatable = false)
+    private Subject subject;
 	
 	public Lesson() {
 	}

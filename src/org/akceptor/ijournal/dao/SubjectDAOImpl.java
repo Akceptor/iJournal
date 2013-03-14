@@ -5,6 +5,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.akceptor.ijournal.domain.Subject;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
@@ -90,7 +91,12 @@ private HibernateTemplate hibernateTemplate;
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Subject> findSubjectsByStudentID(int studentID) {
-		return hibernateTemplate.find("from Subject order by subject_id");
+		StringBuffer queryString = new StringBuffer();
+		queryString.append("FROM Subject WHERE subject_id IN (SELECT subject_id FROM Lesson WHERE student_id=1)");
+		Query query = hibernateTemplate.getSessionFactory().openSession().createQuery(queryString.toString());
+		List<Subject> result = query.list();
+		return result;
+		//return hibernateTemplate.find("from Subject where subject_id in (select subject_id from lesson where student_id=1)");
 	}
 
 	}

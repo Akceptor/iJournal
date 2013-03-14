@@ -40,6 +40,7 @@ public class SubjectService {
 	}
 	
 	public List<Subject> findSubjectsByStudentID(int studentID) {
+		System.err.println(subjectDAO.findSubjectsByStudentID(studentID));
 		return subjectDAO.findSubjectsByStudentID(studentID);
 	}
 	
