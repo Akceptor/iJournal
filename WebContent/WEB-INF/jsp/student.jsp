@@ -14,6 +14,24 @@
 </head>
 <body>
 <c:import url="header.jsp" charEncoding="UTF-8" />
-STUDENT
+STUDENT<br>
+
+
+				
+<!-- List all subjects -->
+					<c:forEach var="member" items="${subjectList}"
+					varStatus="subjCounter">
+<div style="float:left"><table border="1">
+<!-- dates --><c:forEach var="date" items="${lessonDates}" varStatus="dateCounter">
+						
+						<tr><td>${lessonDates[subjCounter.count-1][dateCounter.count-1]}</td><td>${allMarks[subjCounter.count-1][dateCounter.count-1]}</td></tr>	
+						
+					</c:forEach>
+			<tr><td><center>${member.subjectName}</center></td></tr>	
+			
+</table></div>
+				</c:forEach>
+			
+
 </body>
 </html>
