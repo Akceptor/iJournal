@@ -15,5 +15,7 @@ public interface StudentDAO {
 	public List<Student> findStudents();
 	public ArrayList<Student> findStudentsByGroup(int groupID);
 	public String getStudentFIOByID(int studentID);
+	public List<Student> getStudentByUserID(int userID);
+	public List<Student> getStudentByID(int studentID);
 
 }

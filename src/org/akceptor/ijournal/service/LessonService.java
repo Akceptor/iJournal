@@ -19,15 +19,20 @@ public class LessonService {
 	
 	
 	
-	public ArrayList<Lesson> getStudentsMarkFromSubject (int studentID, int subjectID){
+	public ArrayList<Integer> getStudentsMarkFromSubject (int studentID, int subjectID){
 		
 		return lessonDAO.getStudentsMarksBySubject(studentID, subjectID);
 		
 	}
 	
-	public ArrayList<Date> getLessonDatesBySubject (int subjectID, int groupID){
-		//System.err.println("LessonService");
-		return lessonDAO.getLessonDatesBySubjectAndGroup(subjectID, groupID);
+public ArrayList<Lesson> getStudentsDataFromSubject (int studentID, int subjectID){
+		
+		return lessonDAO.getStudentsDataBySubject(studentID, subjectID);
+		
+	}
+	
+	public ArrayList<Date> getLessonDatesBySubject (int subjectID){
+				return lessonDAO.getLessonDatesBySubject(subjectID);
 		
 	}
 	
@@ -36,9 +41,9 @@ public class LessonService {
 		
 	}
 	
-public ArrayList<Lesson> getMarksFromSubject (int groupID, int subjectID){
+public ArrayList<Lesson> getMarksFromSubject (int subjectID){
 		
-		return lessonDAO.getMarksBySubject(groupID, subjectID);
+		return lessonDAO.getMarksBySubject(subjectID);
 		
 	}
 
@@ -51,6 +56,10 @@ public int getSubjectByLessonID(int lessonID){
 
 public ArrayList<Lesson> getLessonsBySubject(int subjectID){
 	return lessonDAO.getLessonsBySubject(subjectID);
+}
+
+public ArrayList<Lesson> getLessonsByStudent(int studentID){
+	return lessonDAO.getLessonsByStudent(studentID);
 }
 
 public Lesson getLessonByID(int lessonID){

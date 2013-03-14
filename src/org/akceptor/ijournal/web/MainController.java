@@ -67,9 +67,9 @@ public class MainController {
 			//adding student list
 			mav.addObject("groupMembers",
 					groupService.getGroupMembersByID(currentGroup.getId()));
-			
-			
+						
 			// adding students marks for studentID & subjectID
+			//TO DO Move this to Service layer 
 			ArrayList<ArrayList<Integer>> allStudentMarks = new ArrayList<ArrayList<Integer>>();
 			ArrayList<ArrayList<Integer>> allLessonIDs = new ArrayList<ArrayList<Integer>>();
 			ArrayList<ArrayList<Integer>> allAbsenceMarks = new ArrayList<ArrayList<Integer>>();
@@ -86,7 +86,7 @@ public class MainController {
 				int totalMark = 0; //Summary for all lessons per student
 				int totalAbsence = 0;//Summary for "H" marks
 				int totalAbsenceOk = 0;//Summary for "R" marks
-				for (Lesson lesson : lessonService.getStudentsMarkFromSubject(
+				for (Lesson lesson : lessonService.getStudentsDataFromSubject(
 						student.getId(), currentSubject.getId())) {// get all
 																	// marks
 					studentMarks.add(lesson.getMark());
@@ -120,7 +120,7 @@ public class MainController {
 			mav.addObject("totalAbs", totalAbs);
 			mav.addObject("totalAbsOk", totalAbsOk);
 			//adding dates
-			mav.addObject("subjectDates",lessonService.getLessonDatesBySubject(currentSubject.getId(), currentGroup.getId()));
+			mav.addObject("subjectDates",lessonService.getLessonDatesBySubject(currentSubject.getId()));
 
 			
 			

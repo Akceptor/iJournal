@@ -44,5 +44,11 @@ public class StudentService {
 		return (ArrayList<Student>) studentDAO.findStudentsByGroup(groupID);//findStudents();
 	}
 	
+	public int getStudentIDByUserID(int userID) {
+		return studentDAO.getStudentByUserID(userID).get(0).getId();
+	}
 	
+	public ArrayList<Student> getStudentByID(int studentID){
+		return (ArrayList<Student>)studentDAO.getStudentByID(studentID);
+	}
 }

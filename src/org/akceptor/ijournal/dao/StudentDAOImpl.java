@@ -97,9 +97,23 @@ public class StudentDAOImpl implements StudentDAO {
 		return hibernateTemplate.get(Student.class, bookNr);
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Student> getStudentByUserID(int userID) {
+		return hibernateTemplate.find("from Student where user_id =" + userID);
+	}
+	
 	@Override
 	@Transactional
 	public String getStudentFIOByID(int studentID) {
 		return hibernateTemplate.get(Student.class, studentID).getStudentName();
+	}
+
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Student> getStudentByID(int studentID) {
+		return hibernateTemplate.find("from Student where student_id =" + studentID);
 	}
 }

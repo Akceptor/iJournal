@@ -1,6 +1,7 @@
 package org.akceptor.ijournal.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.akceptor.ijournal.dao.StudentDAO;
 import org.akceptor.ijournal.dao.SubjectDAO;
@@ -32,6 +33,14 @@ public class SubjectService {
 	
 	public String getGroupName(Group group){
 		return group.getGroupName();
+	}
+	
+	public List<Subject> findSubjects() {
+		return subjectDAO.findSubjects();
+	}
+	
+	public List<Subject> findSubjectsByStudentID(int studentID) {
+		return subjectDAO.findSubjectsByStudentID(studentID);
 	}
 	
 	public ArrayList<MyDate> getSubjectDatesByID(int subjectID){

@@ -12,10 +12,13 @@ public interface LessonDAO {
 	public void delete(Lesson lesson);
 	public Lesson getLessonByNumber(int lesson_number);
 	public List<Lesson> findLessons();
-	public ArrayList<Lesson> getStudentsMarksBySubject(int studentID, int subjectID);
-	public ArrayList<Date> getLessonDatesBySubjectAndGroup(int subjectID, int groupID);
-	public ArrayList<Lesson> getMarksBySubject(int groupID, int subjectID);
+	public ArrayList<Integer> getStudentsMarksBySubject(int studentID, int subjectID);
+	public ArrayList<Date> getLessonDatesBySubject(int subjectID);
+	public ArrayList<Lesson> getMarksBySubject(int subjectID);
 	public Lesson getLessonByID(int lessonID);
 	
 	public ArrayList<Lesson> getLessonsBySubject(int subjectID);
+	public ArrayList<Lesson> getLessonsByStudent(int studentID);
+	public ArrayList<Lesson> getStudentsDataBySubject(int studentID,
+			int subjectID);
 }

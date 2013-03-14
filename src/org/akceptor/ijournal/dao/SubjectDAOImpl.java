@@ -1,6 +1,5 @@
 package org.akceptor.ijournal.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -87,11 +86,11 @@ private HibernateTemplate hibernateTemplate;
 	public List<Subject> findSubjects() {
 		return hibernateTemplate.find("from Subject order by subject_id");
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
-	public ArrayList<Subject> findSubjectsByCourse(int courseID) {
-		return (ArrayList<Subject>) hibernateTemplate.find("from Subject where course_id =" + courseID +" order by subject_name");
+	public List<Subject> findSubjectsByStudentID(int studentID) {
+		return hibernateTemplate.find("from Subject order by subject_id");
 	}
 
-}
+	}
