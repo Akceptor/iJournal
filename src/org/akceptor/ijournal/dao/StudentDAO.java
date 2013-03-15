@@ -10,7 +10,6 @@ public interface StudentDAO {
 	public void updateStudent(Student student);
 	public void delete(Student student);
 	public Student getStudentByFIO(String studentFIO);
-	//public int getStudentIDByFIO(String studentFIO);
 	public Student getStudentByBookNr(String bookNr);
 	public List<Student> findStudents();
 	public ArrayList<Student> findStudentsByGroup(int groupID);

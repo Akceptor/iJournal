@@ -17,12 +17,11 @@ public class GroupService {
 	@Autowired
 	private StudentDAO studentDAO;
 	
+	/** 
+	 * 	Returns all groups in ArrayList
+	 */
 	public ArrayList<Group> getGroups(){
-		/** 
-		 * 	Returns all groups in ArrayList
-		 */
 		return (ArrayList<Group>) groupDAO.findGroups();
-		
 	};
 	
 	public Group getGroupByID(int groupID){

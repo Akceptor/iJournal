@@ -13,38 +13,46 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SubjectService {
-	
+
 	@Autowired
 	private SubjectDAO subjectDAO;
 	@Autowired
 	private StudentDAO studentDAO;
-	
-	public ArrayList<Subject> getSubjects(){
-		/** 
-		 * 	Returns all groups in ArrayList
-		 */
+
+	/**
+	 * Returns all subjects in ArrayList
+	 */
+	public ArrayList<Subject> getSubjects() {
 		return (ArrayList<Subject>) subjectDAO.findSubjects();
-		
+
 	};
 	
-	public Subject getSubjectByID(int subjectID){
+	/**
+	 * Returns all subjects in ArrayList
+	 */
+	public ArrayList<Subject> getSubjectsForTeacher(int teacherID) {
+		return (ArrayList<Subject>) subjectDAO.findSubjectsForTeacher(teacherID);
+
+	};
+
+	public Subject getSubjectByID(int subjectID) {
 		return subjectDAO.getSubjectByID(subjectID);
 	}
-	
-	public String getGroupName(Group group){
+
+	public String getGroupName(Group group) {
 		return group.getGroupName();
 	}
-	
+
 	public List<Subject> findSubjects() {
 		return subjectDAO.findSubjects();
 	}
-	
+
 	public List<Subject> findSubjectsByStudentID(int studentID) {
 		System.err.println(subjectDAO.findSubjectsByStudentID(studentID));
 		return subjectDAO.findSubjectsByStudentID(studentID);
 	}
-	
-	public ArrayList<MyDate> getSubjectDatesByID(int subjectID){
+
+	public ArrayList<MyDate> getSubjectDatesByID(int subjectID) {
 		ArrayList<MyDate> dates = new ArrayList<MyDate>();
 		dates.add(new MyDate(0, "1.01.2013"));
 		dates.add(new MyDate(1, "8.01.2013"));
@@ -56,5 +64,4 @@ public class SubjectService {
 		return dates;
 	}
 
-	
 }

@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.akceptor.ijournal.domain.Credentials;
-import org.akceptor.ijournal.domain.Lesson;
-import org.akceptor.ijournal.domain.Student;
 import org.akceptor.ijournal.domain.Subject;
 import org.akceptor.ijournal.service.LessonService;
 import org.akceptor.ijournal.service.StudentService;
@@ -16,7 +14,7 @@ import org.akceptor.ijournal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -57,11 +55,11 @@ public class StudentController {
 							.getLessonDatesBySubject(subject.getId()));
 					allMarks.add(lessonService.getStudentsMarkFromSubject(
 							userID, subject.getId()));
-					}
+					}	
 
 		mav.addObject("lessonDates", allLessonDates);
 
-		System.err.print(" " + allMarks);
+		System.err.print(" "+ allMarks);
 		mav.addObject("allMarks", allMarks);
 
 		return mav;

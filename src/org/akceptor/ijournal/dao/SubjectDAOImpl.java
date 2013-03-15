@@ -88,15 +88,43 @@ private HibernateTemplate hibernateTemplate;
 		return hibernateTemplate.find("from Subject order by subject_id");
 	}
 	
+	/**
+	  * Gets subjects, where selected student was enrolled
+	  *
+	  * @param studentID - id for current student
+	  * @return List of subjects for that student as a part from Subject table 
+	  */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Subject> findSubjectsByStudentID(int studentID) {
 		StringBuffer queryString = new StringBuffer();
-		queryString.append("FROM Subject WHERE subject_id IN (SELECT subject_id FROM Lesson WHERE student_id=1)");
+		queryString.append("FROM Subject WHERE subject_id IN (SELECT subject_id FROM Lesson WHERE student_id=");
+		queryString.append(studentID);
+		queryString.append(")");
 		Query query = hibernateTemplate.getSessionFactory().openSession().createQuery(queryString.toString());
 		List<Subject> result = query.list();
 		return result;
 		//return hibernateTemplate.find("from Subject where subject_id in (select subject_id from lesson where student_id=1)");
+	}
+	
+	/**
+	  * Gets subjects for selected teacher
+	  *
+	  * @param teacherID - id for current student
+	  * @return List of subjects for that teacher
+	  */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Subject> findSubjectsForTeacher(int teacherID) {
+		//Made as native query because of copy-pasting :)
+		StringBuffer queryString = new StringBuffer();
+		queryString.append("FROM Subject WHERE teacher_id=");
+		queryString.append(teacherID);
+		queryString.append(")");
+		Query query = hibernateTemplate.getSessionFactory().openSession().createQuery(queryString.toString());
+		List<Subject> result = query.list();
+		return result;
+		
 	}
 
 	}

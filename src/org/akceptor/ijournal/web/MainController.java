@@ -3,6 +3,7 @@ package org.akceptor.ijournal.web;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
+import org.akceptor.ijournal.domain.Credentials;
 import org.akceptor.ijournal.domain.Group;
 import org.akceptor.ijournal.domain.Lesson;
 import org.akceptor.ijournal.domain.Student;
@@ -10,6 +11,8 @@ import org.akceptor.ijournal.domain.Subject;
 import org.akceptor.ijournal.service.GroupService;
 import org.akceptor.ijournal.service.LessonService;
 import org.akceptor.ijournal.service.SubjectService;
+import org.akceptor.ijournal.service.TeacherService;
+import org.akceptor.ijournal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +29,11 @@ public class MainController {
 	SubjectService subjectService;
 	@Autowired
 	LessonService lessonService;
+	@Autowired
+	UserService userService;
+	@Autowired
+	TeacherService teacherService;
+	
 	private static Group currentGroup;
 	private static Subject currentSubject;
 
@@ -136,10 +144,18 @@ public class MainController {
 	// First Login - select group and subject
 	public ModelAndView selectGroupAndSubject() {
 
+		// get user's ID from Spring security via credentials
+				int userID = userService.getUserIDByName(Credentials.getUserName());
+				System.err.println("Entered user with " + userID);
+				// get student's ID from database based on userID
+				userID = teacherService.getTeacherIDByUserID(userID);
+				System.err.println("Teacher'z ID is " + userID);
+		
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("hello");
 		mav.addObject("groups", groupService.getGroups());
-		mav.addObject("subjects", subjectService.getSubjects());
+		mav.addObject("subjects", subjectService.getSubjectsForTeacher(userID));
 		return mav;
 	}
 	

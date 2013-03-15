@@ -12,4 +12,5 @@ public interface SubjectDAO {
 	public Subject getSubjectByID(int subjectID);
 	public List<Subject> findSubjects();
 	List<Subject> findSubjectsByStudentID(int studentID);
+	public List<Subject> findSubjectsForTeacher(int teacherID);
 	}
