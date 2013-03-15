@@ -143,19 +143,27 @@ public class MainController {
 	@RequestMapping(method = RequestMethod.GET)
 	// First Login - select group and subject
 	public ModelAndView selectGroupAndSubject() {
-
+			
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("hello");
 		// get user's ID from Spring security via credentials
 				int userID = userService.getUserIDByName(Credentials.getUserName());
 				System.err.println("Entered user with " + userID);
 				// get student's ID from database based on userID
+				try {
 				userID = teacherService.getTeacherIDByUserID(userID);
 				System.err.println("Teacher'z ID is " + userID);
-		
-		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("hello");
-		mav.addObject("groups", groupService.getGroups());
-		mav.addObject("subjects", subjectService.getSubjectsForTeacher(userID));
+				mav.addObject("groups", groupService.getGroups());
+				mav.addObject("subjects", subjectService.getSubjectsForTeacher(userID));
+				} catch (Exception e) {
+					//Not a teacher. So, probably, admin (or hacker)
+					System.err.println("NOT A TEACHER");
+					mav.addObject("groups", groupService.getGroups());
+					mav.addObject("subjects", subjectService.getSubjects());
+				}finally {
+					System.err.println("UserRole is " + Credentials.getUserRole());
+				}
+	
 		return mav;
 	}
 	
