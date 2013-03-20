@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
@@ -159,7 +160,7 @@ public class LessonDAOImpl implements LessonDAO {
 	  * Gets marks/absences for student from DB
 	  *
 	  * @param studentID - id for current student
-	  * @return Arraylist of Lesson type for seledcted student 
+	  * @return Arraylist of Lesson type for selected student 
 	  */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -167,4 +168,30 @@ public class LessonDAOImpl implements LessonDAO {
 		return (ArrayList<Lesson>) hibernateTemplate.find("from Lesson as l where l.sudent_id="+studentID);
 	}
 
+	/**
+	  * Gets sum of marks for selected student per chosen subject
+	  *
+	  * @param studentID - id for current student
+	  * @param subjetcID - id for current subject
+	  * @return integral mark for chosen student-subject pair
+	  */
+	public Long getStudentsTotalMarkFromSubject(int studentID, int subjectID) {
+		StringBuffer queryString = new StringBuffer();
+		queryString.append("select sum(mark) from Lesson where student_id=");
+		queryString.append(studentID);
+		queryString.append(" and subject_id=");
+		queryString.append(subjectID);
+		Query query = hibernateTemplate.getSessionFactory().openSession().createQuery(queryString.toString());
+		List<?> result = query.list();
+		if (result.size() == 0) {
+			return 0l;
+		} else if (result.size() == 1) {
+			return (Long) result.get(0);
+		} else {
+			return (long) result.size();
+		}
+		
+		//return (Integer) hibernateTemplate.find("select sum(l.mark) from Lesson as l where l.subject_id="+subjectID+"and l.student_id="+studentID).get(0);
+		//Does not work for some reason...
+	}
 }

@@ -81,7 +81,7 @@ public class MainController {
 			ArrayList<ArrayList<Integer>> allStudentMarks = new ArrayList<ArrayList<Integer>>();
 			ArrayList<ArrayList<Integer>> allLessonIDs = new ArrayList<ArrayList<Integer>>();
 			ArrayList<ArrayList<Integer>> allAbsenceMarks = new ArrayList<ArrayList<Integer>>();
-			ArrayList<Integer> totalMarks = new ArrayList<Integer>();
+			ArrayList<Long> totalMarks = new ArrayList<Long>();
 			ArrayList<Integer> totalAbs = new ArrayList<Integer>();
 			ArrayList<Integer> totalAbsOk = new ArrayList<Integer>();
 				for (Student student : groupService
@@ -90,15 +90,13 @@ public class MainController {
 				ArrayList<Integer> studentMarks = new ArrayList<Integer>();
 				ArrayList<Integer> lesonIDs = new ArrayList<Integer>();
 				ArrayList<Integer> absenceMarks = new ArrayList<Integer>();
-				
-				int totalMark = 0; //Summary for all lessons per student
+							
 				int totalAbsence = 0;//Summary for "H" marks
 				int totalAbsenceOk = 0;//Summary for "R" marks
 				for (Lesson lesson : lessonService.getStudentsDataFromSubject(
 						student.getId(), currentSubject.getId())) {// get all
 																	// marks
 					studentMarks.add(lesson.getMark());
-					totalMark=totalMark+lesson.getMark();
 					if (lesson.getAbsense()==1){
 						totalAbsence=totalAbsence+lesson.getAbsense();
 					}
@@ -110,7 +108,7 @@ public class MainController {
 					
 				}
 				
-				totalMarks.add(totalMark);//add summary score
+				totalMarks.add(lessonService.getStudentsTotalMarkFromSubject(student.getId(), currentSubject.getId()));//add summary score
 				totalAbs.add(totalAbsence);//add summary score
 				totalAbsOk.add(totalAbsenceOk);//add summary score for worked-out absences
 				allStudentMarks.add(studentMarks);

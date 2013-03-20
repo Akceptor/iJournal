@@ -80,7 +80,11 @@
 		
 			<!--First table-->
 			<div id="tab-one" >
-				ONE
+				<form name="adduser" action="/myJournal/admin/adduser" method="get">
+				<input name="username" type="text"/>
+				<input name="password" type="text"/>
+				<input type="submit" value="Add User"/>
+				</form>
 			</div>
 
 

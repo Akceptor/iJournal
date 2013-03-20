@@ -54,12 +54,6 @@ public class StudentDAOImpl implements StudentDAO {
 		hibernateTemplate.delete(student);
 		hibernateTemplate.flush();
 	}
-
-//	@Transactional
-//	public int getStudentIDByFIO(String studentFIO) {
-//		System.out.println("               DAO ");
-//		return hibernateTemplate.get(Student.class, studentFIO).getId();
-//	}
 	
 	@Transactional
 	public Student getStudentByFIO(String studentFIO) {

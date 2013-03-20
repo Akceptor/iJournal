@@ -48,8 +48,6 @@ public ArrayList<Lesson> getMarksFromSubject (int subjectID){
 	}
 
 public int getSubjectByLessonID(int lessonID){
-	//System.err.println("LessonService");
-	//System.err.println(lessonDAO.getLessonByID(lessonID).getSubject_id());
 	return lessonDAO.getLessonByID(lessonID).getSubject_id();
 		
 }
@@ -67,5 +65,9 @@ public Lesson getLessonByID(int lessonID){
 	
 }
 
+public long getStudentsTotalMarkFromSubject(int studentID, int subjectID){
+	return lessonDAO.getStudentsTotalMarkFromSubject(studentID, subjectID);
+	
+}
 
 }

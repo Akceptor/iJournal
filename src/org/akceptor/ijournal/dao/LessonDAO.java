@@ -21,4 +21,5 @@ public interface LessonDAO {
 	public ArrayList<Lesson> getLessonsByStudent(int studentID);
 	public ArrayList<Lesson> getStudentsDataBySubject(int studentID,
 			int subjectID);
+	public Long getStudentsTotalMarkFromSubject(int studentID, int subjectID);
 }
