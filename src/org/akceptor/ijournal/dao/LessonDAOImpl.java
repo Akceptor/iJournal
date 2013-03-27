@@ -96,8 +96,14 @@ public class LessonDAOImpl implements LessonDAO {
 	@SuppressWarnings("unchecked")
 	@Transactional
 	public ArrayList<Date> getLessonDatesBySubject(int subjectID) {
-		//System.err.println("LessonDAO");
-		return (ArrayList<Date>) hibernateTemplate.find("select distinct l.lesson_date from Lesson as l where l.subject_id="+subjectID);//+" and l.group_id="+groupID);
+
+		StringBuffer queryString = new StringBuffer();
+		queryString.append("select distinct ld.lesson_date FROM LessonDates AS ld, Lesson AS l WHERE (l.lesson_id=ld.lesson_id) AND (l.subject_id=");// AND (Lesson.subject_id=");
+		queryString.append(subjectID);
+		queryString.append(" )");
+		Query query = hibernateTemplate.getSessionFactory().openSession().createQuery(queryString.toString());
+		ArrayList<Date> result = (ArrayList<Date>) query.list();
+		return result;
 	}
 	
 	/**

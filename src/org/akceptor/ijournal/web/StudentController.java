@@ -1,7 +1,7 @@
 package org.akceptor.ijournal.web;
 
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -46,7 +46,7 @@ public class StudentController {
 
 		// adding students marks for studentID & subjectID
 		// TODO Move this to Service layer
-		ArrayList<ArrayList<Date>> allLessonDates = new ArrayList<ArrayList<Date>>();
+		ArrayList<List<?>> allLessonDates = new ArrayList<List<?>>();
 		ArrayList<ArrayList<Integer>> allMarks = new ArrayList<ArrayList<Integer>>();
 
 					for (Subject subject : subjectService.findSubjects()) {

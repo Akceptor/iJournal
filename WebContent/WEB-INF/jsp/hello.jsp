@@ -45,7 +45,7 @@
 				<tr>
 					<td>Прізвище студента</td>
 					<c:forEach var="date" items="${subjectDates}">
-						<td>${date}</td>
+						<td><fmt:formatDate value="${date}" pattern="dd-MM-yyyy (E)" /></td>
 					</c:forEach>
 					<td><span title="Сума балів; кількість невідпрацьованих/відпрацованих пропусків">Підсумок</span></td>
 				</tr>

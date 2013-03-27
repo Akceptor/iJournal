@@ -24,7 +24,7 @@ STUDENT<br>
 <div style="float:left"><table border="1">
 <!-- dates --><c:forEach var="date" items="${lessonDates}" varStatus="dateCounter">
 						
-						<tr><td>${lessonDates[subjCounter.count-1][dateCounter.count-1]}</td><td width=20>${allMarks[subjCounter.count-1][dateCounter.count-1]}</td></tr>	
+						<tr><td><fmt:formatDate value="${lessonDates[subjCounter.count-1][dateCounter.count-1]}" pattern="dd-MM-yyyy" /></td><td width=20>${allMarks[subjCounter.count-1][dateCounter.count-1]}</td></tr>	
 						
 					</c:forEach>
 			<tr><td><center>${member.subjectName}</center></td></tr>	

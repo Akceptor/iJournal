@@ -1,6 +1,5 @@
 package org.akceptor.ijournal.domain;
 
-import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,9 +27,9 @@ public class Lesson implements java.io.Serializable{
 	@Column(name = "subject_id")
 	private int subject_id;
 	
-	@Column(name = "lesson_date")
-	private Date lesson_date;
-	
+//	@Column(name = "lesson_date")
+//	private Date lesson_date;
+//	
 	@Column(name = "mark")
 	private int mark;
 	
@@ -67,14 +66,14 @@ public class Lesson implements java.io.Serializable{
 	}
 
 
-	public Date getDate() {
-		return lesson_date;
-	}
-
-
-	public void setDate(Date lesson_date) {
-		this.lesson_date = lesson_date;
-	}
+//	public Date getDate() {
+//		return lesson_date;
+//	}
+//
+//
+//	public void setDate(Date lesson_date) {
+//		this.lesson_date = lesson_date;
+//	}
 
 
 	public int getMark() {
@@ -106,7 +105,6 @@ public class Lesson implements java.io.Serializable{
 	
 	public Lesson() {
 	}
-	
 	
 
 }
