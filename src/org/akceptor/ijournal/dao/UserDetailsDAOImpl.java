@@ -39,11 +39,21 @@ public class UserDetailsDAOImpl implements UserDetailsDAO {
 	public void setTemplate(HibernateTemplate hibernateTemplate) {
 		this.hibernateTemplate = hibernateTemplate;
 	}
-
+	
+	
 	@Transactional
 	public UserDetails getUserRoleByID(int userID) {
-		return (UserDetails) hibernateTemplate.find("select ud from UserDetails as ud where ud.userID="+userID).get(0);
+		try {
+			//trying find user details for selected user
+			return (UserDetails) hibernateTemplate.find("select ud from UserDetails as ud where ud.userID="+userID).get(0);
+		} catch (Exception e){
+			//if no details record - return NONE
+			UserDetails ud= new UserDetails();
+			ud.setAuthority("NONE");
+			return ud;
+		}
 	}
+
 
 	
 }

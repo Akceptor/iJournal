@@ -80,19 +80,20 @@
 		
 			<!--First table-->
 			<div id="tab-one" >
-				<form name="edituser" action="/myJournal/admin/edituser" method="get">
+				<div style="float: left; border: thin solid black"><form name="edituser" action="/myJournal/admin/edituser" method="post">
 				<table><th>Username</th><th colspan=2>Controls</th>
 				
-					<c:forEach var="user" items="${userList}" varStatus="usrCounter"> 
-					<tr><td>${user.username}</td><td><button type="submit">Edit</button></td><td><button type="submit">Delete</button></td></tr>
+					<c:forEach var="user" items="${userList}" varStatus="usrCounter">
+					<tr><td>${user.username}</td><td><button type="submit" name ="editbtn">Edit</button></td><td><button type="submit" name ="deletebtn">Delete</button></td></tr>
 					</c:forEach>
 				</table>
-				</form>
-				<form name="adduser" action="/myJournal/admin/adduser" method="get">
+				</form></div><div style="float: left; border: thin solid black">
+				<center><b>Add User</b></center>
+				<form name="adduser" action="/myJournal/admin/adduser" method="post">
 					<input name="username" type="text"/>
 					<input name="password" type="text"/>
 					<input type="submit" value="Add User"/>
-				</form>
+				</form></div>
 			</div>
 
 

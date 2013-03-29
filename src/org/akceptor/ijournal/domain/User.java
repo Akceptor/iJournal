@@ -12,14 +12,14 @@ import javax.persistence.Table;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "username")
-	private String username;
-
-	@Column(name = "password")
-	private String password;
-	
 	@Column(name = "user_id")
 	private int userID;
+
+	@Column(name = "username")
+	private String username;
+	
+	@Column(name = "password")
+	private String password;
 	
 	public int getUserID() {
 		return userID;

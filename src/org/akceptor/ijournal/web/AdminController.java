@@ -26,21 +26,21 @@ public class AdminController {
 		return mav;
 		}
 		
-		@RequestMapping(method = RequestMethod.GET, value="/adduser")
+		@RequestMapping(method = RequestMethod.POST, value="/adduser")
 		public String addUser(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin");
-		
 		System.out.println("ADD USER "+request.getParameter("username")+" with pass "+request.getParameter("password"));
+		userService.addUser(request.getParameter("username"), request.getParameter("password"));
 		return "redirect:/admin";
 		}
 		
-		@RequestMapping(method = RequestMethod.GET, value="/edituser")
+		@RequestMapping(method = RequestMethod.POST, value="/edituser")
 		public String editUser(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin");
-		
-		System.out.println("EDIT "+request.getParameter("username"));
+		if (request.getParameter("editbtn")!=null){System.out.println("Edit button pressed");};
+		if (request.getParameter("deletebtn")!=null){System.out.println("Delete button pressed");};
 		return "redirect:/admin";
 		}
 

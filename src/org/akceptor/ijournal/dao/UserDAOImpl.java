@@ -62,7 +62,8 @@ public class UserDAOImpl implements UserDAO {
 
 	@Transactional
 	public User getUserByName(String name) {
-		return hibernateTemplate.get(User.class, name);
+		//return hibernateTemplate.get(User.class, name);
+		return (User) hibernateTemplate.find("from User WHERE username='"+name+"'").get(0);
 	}
 
 	@SuppressWarnings("unchecked")
