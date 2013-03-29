@@ -2,6 +2,10 @@ package org.akceptor.ijournal.web;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.akceptor.ijournal.service.GroupService;
+import org.akceptor.ijournal.service.StudentService;
+import org.akceptor.ijournal.service.SubjectService;
+import org.akceptor.ijournal.service.TeacherService;
 import org.akceptor.ijournal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,13 +20,27 @@ public class AdminController {
 	
 	@Autowired
 	UserService userService;
+	@Autowired 
+	StudentService studentService;
+	@Autowired 
+	GroupService groupService;
+	@Autowired 
+	TeacherService teacherService;
+	@Autowired 
+	SubjectService subjectService;
 	
 		@RequestMapping(method = RequestMethod.GET)
+		/*
+		 * Handles main admin page with all lists
+		 */
 		public ModelAndView adminPage(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("userList", userService.findUsers());
+		mav.addObject("studentList", studentService.getStudents());
+		mav.addObject("groupList", groupService.getGroups());
+		mav.addObject("teacherList", teacherService.getTeachers());
+		mav.addObject("subjectList", subjectService.findSubjects());
 		mav.setViewName("admin");
-		//System.out.println(request.getContentLength());
 		return mav;
 		}
 		
