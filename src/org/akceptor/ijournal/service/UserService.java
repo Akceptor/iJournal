@@ -1,11 +1,9 @@
 package org.akceptor.ijournal.service;
 
 import java.math.BigInteger;
-import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.UUID;
 
 import org.akceptor.ijournal.dao.UserDAO;
 import org.akceptor.ijournal.domain.User;
