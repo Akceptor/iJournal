@@ -25,7 +25,7 @@ public class TeacherService {
 	};
 	
 	public int getTeacherIDByUserID(int userID) {
-		return teacherDAO.getTeacherByUserID(userID).get(0).getId();
+		return teacherDAO.getTeacherByUserID(userID).get(0).getTeacherID();
 	}
 	
 	public Teacher getTeacherByID(int teacherID){

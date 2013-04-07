@@ -94,7 +94,7 @@ public class MainController {
 				int totalAbsence = 0;//Summary for "H" marks
 				int totalAbsenceOk = 0;//Summary for "R" marks
 				for (Lesson lesson : lessonService.getStudentsDataFromSubject(
-						student.getId(), currentSubject.getId())) {// get all
+						student.getStudentID(), currentSubject.getSubjectID())) {// get all
 																	// marks
 					studentMarks.add(lesson.getMark());
 					if (lesson.getAbsense()==1){
@@ -103,12 +103,12 @@ public class MainController {
 					if (lesson.getAbsense()==2){
 						totalAbsenceOk=totalAbsenceOk+lesson.getAbsense()/2;
 					}
-					lesonIDs.add(lesson.getLesson_id());
+					lesonIDs.add(lesson.getLessonID());
 					absenceMarks.add(lesson.getAbsense());
 					
 				}
 				
-				totalMarks.add(lessonService.getStudentsTotalMarkFromSubject(student.getId(), currentSubject.getId()));//add summary score
+				totalMarks.add(lessonService.getStudentsTotalMarkFromSubject(student.getStudentID(), currentSubject.getSubjectID()));//add summary score
 				totalAbs.add(totalAbsence);//add summary score
 				totalAbsOk.add(totalAbsenceOk);//add summary score for worked-out absences
 				allStudentMarks.add(studentMarks);
@@ -126,7 +126,7 @@ public class MainController {
 			mav.addObject("totalAbs", totalAbs);
 			mav.addObject("totalAbsOk", totalAbsOk);
 			//adding dates
-			mav.addObject("subjectDates",lessonService.getLessonDatesBySubject(currentSubject.getId()));
+			mav.addObject("subjectDates",lessonService.getLessonDatesBySubject(currentSubject.getSubjectID()));
 
 			
 			

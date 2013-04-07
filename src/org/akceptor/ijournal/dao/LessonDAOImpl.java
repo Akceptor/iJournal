@@ -57,7 +57,7 @@ public class LessonDAOImpl implements LessonDAO {
 	@Transactional
 	public ArrayList<Integer> getStudentsMarksBySubject(int studentID, int subjectID) {
 	
-		return (ArrayList<Integer>) hibernateTemplate.find("select l.mark from Lesson as l where l.student_id=" + studentID +" and l.subject_id="+subjectID);
+		return (ArrayList<Integer>) hibernateTemplate.find("SELECT l.mark FROM Lesson AS l WHERE l.studentID=" + studentID +" and l.subjectID="+subjectID);
 	}
 	
 	/**
@@ -71,7 +71,7 @@ public class LessonDAOImpl implements LessonDAO {
 	@Transactional
 	public ArrayList<Lesson> getStudentsDataBySubject(int studentID, int subjectID) {
 	
-		return (ArrayList<Lesson>) hibernateTemplate.find("select l from Lesson as l where l.student_id=" + studentID +" and l.subject_id="+subjectID);
+		return (ArrayList<Lesson>) hibernateTemplate.find("SELECT l FROM Lesson AS l WHERE l.studentID=" + studentID +" AND l.subjectID="+subjectID);
 	}
 	
 	/**
@@ -84,7 +84,7 @@ public class LessonDAOImpl implements LessonDAO {
 	@Transactional
 	public ArrayList<Lesson> getMarksBySubject(int subjectID) {
 	
-		return (ArrayList<Lesson>) hibernateTemplate.find("select l from Lesson as l where l.subject_id="+subjectID);
+		return (ArrayList<Lesson>) hibernateTemplate.find("SELECT l FROM Lesson AS l WHERE l.subjectID="+subjectID);
 	}
 	
 	/**
@@ -98,7 +98,7 @@ public class LessonDAOImpl implements LessonDAO {
 	public ArrayList<Date> getLessonDatesBySubject(int subjectID) {
 
 		StringBuffer queryString = new StringBuffer();
-		queryString.append("select distinct ld.lesson_date FROM LessonDates AS ld, Lesson AS l WHERE (l.lesson_id=ld.lesson_id) AND (l.subject_id=");// AND (Lesson.subject_id=");
+		queryString.append("select distinct ld.lesson_date FROM LessonDates AS ld, Lesson AS l WHERE (l.lessonID=ld.lesson_id) AND (l.subjectID=");
 		queryString.append(subjectID);
 		queryString.append(" )");
 		Query query = hibernateTemplate.getSessionFactory().openSession().createQuery(queryString.toString());
@@ -115,7 +115,7 @@ public class LessonDAOImpl implements LessonDAO {
 	@SuppressWarnings("unchecked")
 	@Transactional 
 	public ArrayList<Lesson> getLessonsBySubject(int subjectID) {
-		return (ArrayList<Lesson>) hibernateTemplate.find("from Lesson as l where l.subject_id="+subjectID);
+		return (ArrayList<Lesson>) hibernateTemplate.find("FROM Lesson AS l WHERE l.subjectID="+subjectID);
 	}
 	
 	
@@ -183,9 +183,9 @@ public class LessonDAOImpl implements LessonDAO {
 	  */
 	public Long getStudentsTotalMarkFromSubject(int studentID, int subjectID) {
 		StringBuffer queryString = new StringBuffer();
-		queryString.append("select sum(mark) from Lesson where student_id=");
+		queryString.append("SELECT SUM(mark) FROM Lesson AS l WHERE l.studentID=");
 		queryString.append(studentID);
-		queryString.append(" and subject_id=");
+		queryString.append(" AND subjectID=");
 		queryString.append(subjectID);
 		Query query = hibernateTemplate.getSessionFactory().openSession().createQuery(queryString.toString());
 		List<?> result = query.list();

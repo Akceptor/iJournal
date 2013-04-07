@@ -16,14 +16,14 @@ public class Teacher {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "teacher_id")
-	private int id;
+	private int teacherID;
 
-	public int getId() {
-		return id;
+	public int getTeacherID() {
+		return teacherID;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setTeacherID(int teacherID) {
+		this.teacherID = teacherID;
 	}
 
 	public String getTeacherName() {
@@ -37,7 +37,7 @@ public class Teacher {
 	@Column(name = "teacher_fio")
 	private String teacherName;
 	
-	@OneToMany(mappedBy="lesson_id")
+	@OneToMany(mappedBy="lessonID")
     private Set<Lesson> lessons;
 	
 	public Teacher() {

@@ -45,7 +45,7 @@ public class StudentService {
 	}
 	
 	public int getStudentIDByUserID(int userID) {
-		return studentDAO.getStudentByUserID(userID).get(0).getId();
+		return studentDAO.getStudentByUserID(userID).get(0).getStudentID();
 	}
 	
 	public Student getStudentByID(int studentID){

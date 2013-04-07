@@ -26,7 +26,7 @@
 				</c:forEach>
 			</select> <br> Предмет: <select name="Subject" style="width: 200">
 				<c:forEach var="subject" items="${subjects}">
-					<option value="${subject.id}">${subject.subjectName}</option>
+					<option value="${subject.subjectID}">${subject.subjectName}</option>
 				</c:forEach>
 			</select> <br> <input type="submit" value="Submit">
 		</form>
@@ -53,7 +53,7 @@
 				<c:forEach var="member" items="${groupMembers}"
 					varStatus="studentCounter">
 					<tr>
-						<td><input type="text" name="student" value="${member.id}"
+						<td><input type="text" name="student" value="${member.studentID}"
 							hidden /><input type="text" name="student_FIO"
 							value="${member.studentName}" disabled /></td>
 						<c:forEach var="date" items="${subjectDates}"

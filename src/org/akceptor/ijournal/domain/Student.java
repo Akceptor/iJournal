@@ -18,14 +18,14 @@ public class Student {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "student_id")
-	private int id;
+	private int studentID;
 
-	public int getId() {
-		return id;
+	public int getStudentID() {
+		return studentID;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setStudentID(int studentID) {
+		this.studentID = studentID;
 	}
 
 	public Group getGroup() {
@@ -50,7 +50,7 @@ public class Student {
     @JoinColumn(name="group_id")
     private Group group;
 
-	@OneToMany(mappedBy="lesson_id")
+	@OneToMany(mappedBy="lessonID")
     private Set<Lesson> lessons;
 
 	public String getBookNr() {

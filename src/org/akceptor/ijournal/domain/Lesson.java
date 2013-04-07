@@ -19,13 +19,13 @@ public class Lesson implements java.io.Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "lesson_id")
-	private int lesson_id;
+	private int lessonID;
 
 	@Column(name = "student_id")
-	private int student_id;
+	private int studentID;
 	
 	@Column(name = "subject_id")
-	private int subject_id;
+	private int subjectID;
 	
 //	@Column(name = "lesson_date")
 //	private Date lesson_date;
@@ -36,44 +36,35 @@ public class Lesson implements java.io.Serializable{
 	@Column(name = "absense")
 	private int absense;
 	
-	public int getLesson_id() {
-		return lesson_id;
+	public int getLessonID() {
+		return lessonID;
 	}
 
 
-	public void setLesson_id(int lesson_id) {
-		this.lesson_id = lesson_id;
+	public void setLessonID(int lessonID) {
+		this.lessonID = lessonID;
 	}
 
 
-	public int getStudent_id() {
-		return student_id;
+	public int getStudentID() {
+		return studentID;
 	}
 
 
-	public void setStudent_id(int student_id) {
-		this.student_id = student_id;
+	public void setStudentID(int studentID) {
+		this.studentID = studentID;
 	}
 
 
-	public int getSubject_id() {
-		return subject_id;
+	public int getSubjectID() {
+		return subjectID;
 	}
 
 
-	public void setSubject_id(int subject_id) {
-		this.subject_id = subject_id;
+	public void setSubjectID(int subjectID) {
+		this.subjectID = subjectID;
 	}
 
-
-//	public Date getDate() {
-//		return lesson_date;
-//	}
-//
-//
-//	public void setDate(Date lesson_date) {
-//		this.lesson_date = lesson_date;
-//	}
 
 
 	public int getMark() {

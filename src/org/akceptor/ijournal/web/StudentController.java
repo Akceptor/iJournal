@@ -52,9 +52,9 @@ public class StudentController {
 					for (Subject subject : subjectService.findSubjects()) {
 						// get all marks
 					allLessonDates.add(lessonService
-							.getLessonDatesBySubject(subject.getId()));
+							.getLessonDatesBySubject(subject.getSubjectID()));
 					allMarks.add(lessonService.getStudentsMarkFromSubject(
-							userID, subject.getId()));
+							userID, subject.getSubjectID()));
 					}	
 
 		mav.addObject("lessonDates", allLessonDates);

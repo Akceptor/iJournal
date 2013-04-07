@@ -68,13 +68,13 @@ public class OkController {
 				
 				lesson = lessonService.getLessonByID(lessonID);
 				//set parsed student ID
-				lesson.setStudent_id(studentID);
+				lesson.setStudentID(studentID);
 				//set mark 4 that student
 				lesson.setMark(mark);
 				//set absence flag 4 that student
 				lesson.setAbsense(absence);
 				//set ID 4 that lesson
-				lesson.setLesson_id(lessonID);
+				lesson.setLessonID(lessonID);
 				
 				lessonService.updateLesson(lesson);
 			}

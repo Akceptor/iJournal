@@ -85,7 +85,7 @@ private HibernateTemplate hibernateTemplate;
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Subject> findSubjects() {
-		return hibernateTemplate.find("from Subject order by subject_id");
+		return hibernateTemplate.find("FROM Subject ORDER BY subjectID");
 	}
 	
 	/**
@@ -98,13 +98,12 @@ private HibernateTemplate hibernateTemplate;
 	@Override
 	public List<Subject> findSubjectsByStudentID(int studentID) {
 		StringBuffer queryString = new StringBuffer();
-		queryString.append("FROM Subject WHERE subject_id IN (SELECT subject_id FROM Lesson WHERE student_id=");
+		queryString.append("FROM Subject AS s WHERE s.subjectID IN (SELECT l.subjectID FROM Lesson AS l WHERE l.studentID=");
 		queryString.append(studentID);
 		queryString.append(")");
 		Query query = hibernateTemplate.getSessionFactory().openSession().createQuery(queryString.toString());
 		List<Subject> result = query.list();
 		return result;
-		//return hibernateTemplate.find("from Subject where subject_id in (select subject_id from lesson where student_id=1)");
 	}
 	
 	/**

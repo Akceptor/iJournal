@@ -22,12 +22,13 @@ STUDENT<br>
 					<c:forEach var="member" items="${subjectList}"
 					varStatus="subjCounter">
 <div style="float:left"><table border="1">
+<th>Дата</th><th>Оцінка</th><th> </th>
 <!-- dates --><c:forEach var="date" items="${lessonDates}" varStatus="dateCounter">
-						
+					
 						<tr><td><fmt:formatDate value="${lessonDates[subjCounter.count-1][dateCounter.count-1]}" pattern="dd-MM-yyyy" /></td><td width=20>${allMarks[subjCounter.count-1][dateCounter.count-1]}</td></tr>	
-						
+					
 					</c:forEach>
-			<tr><td><center>${member.subjectName}</center></td></tr>	
+			<tr><td colspan=2><center>${member.subjectName}</center><td></tr>	
 			
 </table></div>
 				</c:forEach>

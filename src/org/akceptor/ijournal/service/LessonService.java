@@ -50,7 +50,7 @@ public class LessonService {
 	}
 
 	public int getSubjectByLessonID(int lessonID) {
-		return lessonDAO.getLessonByID(lessonID).getSubject_id();
+		return lessonDAO.getLessonByID(lessonID).getSubjectID();
 
 	}
 

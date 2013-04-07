@@ -16,7 +16,7 @@ public class Subject {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "subject_id")
-	private int id;
+	private int subjectID;
 
 	@Column(name = "subject_name")
 	private String subjectName;
@@ -24,12 +24,12 @@ public class Subject {
 	 @OneToMany
 	 public Set<Lesson> lessons;
 	
-	public int getId() {
-		return id;
+	public int getSubjectID() {
+		return subjectID;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setSubjectID(int subjectID) {
+		this.subjectID = subjectID;
 	}
 
 	public String getSubjectName() {

@@ -34,8 +34,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		if (userFromDAO == null) {
 			throw new BadCredentialsException("Bad credentials");
 		}
-		System.err.println(userDetailsDAO.getUserRoleByID(userDAO
-				.getUserByName(userName).getUserID()).getAuthority());
+//		System.err.println(userName);
+//		System.err.println("UID: "+userDAO.getUserByName(userName).getUserID());
+//		System.err.println(userDetailsDAO.getUserRoleByID(userDAO.getUserByName(userName).getUserID()).getAuthority());
 
 		List<GrantedAuthority> grantedAuthorityList = new ArrayList<GrantedAuthority>(
 				1);

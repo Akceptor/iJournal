@@ -108,6 +108,6 @@ public class StudentDAOImpl implements StudentDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Student> getStudentByID(int studentID) {
-		return hibernateTemplate.find("from Student where student_id =" + studentID);
+		return hibernateTemplate.find("FROM Student AS s WHERE s.studentID =" + studentID);
 	}
 }

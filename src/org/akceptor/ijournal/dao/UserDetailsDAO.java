@@ -1,7 +1,7 @@
 package org.akceptor.ijournal.dao;
 
-import org.akceptor.ijournal.domain.UserDetails;
+import org.akceptor.ijournal.domain.UserRoles;
 
 public interface UserDetailsDAO {
-	public UserDetails getUserRoleByID(int userID);
+	public UserRoles getUserRoleByID(int userID);
 }

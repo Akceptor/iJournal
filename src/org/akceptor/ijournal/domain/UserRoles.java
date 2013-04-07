@@ -8,32 +8,26 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user_roles")
-public class UserDetails {
+@Table(name = "userroles")
+public class UserRoles {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "USER_ROLE_ID")
+	@Column(name = "user_role_id")
 	private int userRoleID;
-
-	@Column(name = "USER_ID")
-	private int userID;
 	
-	@Column(name = "AUTHORITY")
+	@Column(name = "authority")
 	private String authority;
-
 	
 	public String getAuthority() {
 		return authority;
 	}
 
-
 	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
 
-
-	public UserDetails() {
+	public UserRoles() {
 	}
-
+	
 	
 }
