@@ -96,7 +96,7 @@ CREATE TABLE `lesson` (
 
 LOCK TABLES `lesson` WRITE;
 /*!40000 ALTER TABLE `lesson` DISABLE KEYS */;
-INSERT INTO `lesson` VALUES (1,1,1,3,'1'),(2,1,1,4,'0'),(3,1,1,0,'1'),(4,1,1,5,'1'),(5,1,1,2,'0'),(6,1,1,0,'1'),(7,2,1,3,'0'),(8,2,1,3,'0'),(9,2,1,3,'0'),(10,2,1,3,'0'),(11,2,1,3,'0'),(12,2,1,0,'0'),(13,3,1,4,'0'),(14,3,1,0,'0'),(15,3,1,0,'0'),(16,3,1,0,'0'),(17,3,1,0,'0'),(18,3,1,0,'0'),(19,4,1,1,'0'),(20,4,1,0,'0'),(21,4,1,0,'0'),(22,4,1,0,'0'),(23,4,1,0,'0'),(24,4,1,5,'0'),(25,5,1,3,'0'),(26,5,1,0,'0'),(27,5,1,5,'0'),(28,5,1,0,'0'),(29,5,1,0,'0'),(30,5,1,5,'0'),(31,6,1,0,'2'),(32,6,1,0,'0'),(33,6,1,0,'0'),(34,6,1,0,'0'),(35,6,1,0,'0'),(36,6,1,0,'0'),(37,1,2,0,'0'),(38,1,2,1,'0'),(39,1,2,0,'0'),(40,1,2,0,'0'),(41,1,2,0,'0'),(42,1,2,0,'0'),(43,2,2,0,'0'),(44,2,2,0,'0'),(45,2,2,0,'0'),(46,2,2,0,'0'),(47,2,2,3,'0'),(48,2,2,0,'1'),(49,3,2,0,'0'),(50,3,2,0,'0'),(51,3,2,2,'0'),(52,3,2,0,'0'),(53,3,2,0,'0'),(54,3,2,0,'0'),(55,4,2,0,'0'),(56,4,2,0,'0'),(57,4,2,0,'0'),(58,4,2,0,'0'),(59,4,2,0,'0'),(60,4,2,0,'0'),(61,5,2,1,'0'),(62,5,2,0,'0'),(63,5,2,5,'0'),(64,5,2,0,'0'),(65,5,2,0,'0'),(66,5,2,5,'0'),(67,6,2,0,'2'),(68,6,2,0,'0'),(69,6,2,0,'0'),(70,6,2,0,'0'),(71,6,2,0,'0'),(72,6,2,4,'0');
+INSERT INTO `lesson` VALUES (1,1,1,3,'1'),(2,1,1,4,'0'),(3,1,1,0,'1'),(4,1,1,5,'1'),(5,1,1,2,'0'),(6,1,1,0,'1'),(7,2,1,3,'0'),(8,2,1,3,'0'),(9,2,1,3,'0'),(10,2,1,3,'0'),(11,2,1,3,'0'),(12,2,1,0,'1'),(13,3,1,3,'2'),(14,3,1,0,'0'),(15,3,1,0,'0'),(16,3,1,0,'0'),(17,3,1,0,'0'),(18,3,1,0,'1'),(19,4,1,1,'0'),(20,4,1,0,'0'),(21,4,1,0,'0'),(22,4,1,0,'0'),(23,4,1,0,'0'),(24,4,1,5,'0'),(25,5,1,3,'0'),(26,5,1,0,'0'),(27,5,1,5,'0'),(28,5,1,0,'0'),(29,5,1,0,'0'),(30,5,1,5,'0'),(31,6,1,8,'0'),(32,6,1,0,'1'),(33,6,1,0,'0'),(34,6,1,0,'0'),(35,6,1,0,'0'),(36,6,1,0,'1'),(37,1,2,0,'0'),(38,1,2,1,'0'),(39,1,2,0,'0'),(40,1,2,0,'0'),(41,1,2,0,'0'),(42,1,2,0,'0'),(43,2,2,0,'0'),(44,2,2,0,'0'),(45,2,2,0,'0'),(46,2,2,0,'0'),(47,2,2,3,'0'),(48,2,2,0,'1'),(49,3,2,0,'0'),(50,3,2,0,'0'),(51,3,2,2,'0'),(52,3,2,0,'0'),(53,3,2,0,'0'),(54,3,2,0,'0'),(55,4,2,0,'0'),(56,4,2,0,'0'),(57,4,2,0,'0'),(58,4,2,0,'0'),(59,4,2,0,'0'),(60,4,2,0,'0'),(61,5,2,1,'0'),(62,5,2,0,'0'),(63,5,2,5,'0'),(64,5,2,0,'0'),(65,5,2,0,'0'),(66,5,2,5,'0'),(67,6,2,0,'2'),(68,6,2,0,'0'),(69,6,2,0,'0'),(70,6,2,0,'0'),(71,6,2,0,'0'),(72,6,2,4,'0');
 /*!40000 ALTER TABLE `lesson` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,16 +164,12 @@ DROP TABLE IF EXISTS `subjects`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `subjects` (
-  `subject_id` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL AUTO_INCREMENT,
   `subject_name` varchar(120) NOT NULL,
-  `teacher_id` int(11) NOT NULL,
-  `activity_type` int(11) NOT NULL,
+  `teacher_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`subject_id`),
-  UNIQUE KEY `subject_id_UNIQUE` (`subject_id`),
-  KEY `fk_activity_type_idx` (`activity_type`),
-  KEY `fk_activity_type_idx1` (`activity_type`),
-  CONSTRAINT `fk_activity_type` FOREIGN KEY (`activity_type`) REFERENCES `activities` (`activity_type`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  UNIQUE KEY `subject_id_UNIQUE` (`subject_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,7 +178,7 @@ CREATE TABLE `subjects` (
 
 LOCK TABLES `subjects` WRITE;
 /*!40000 ALTER TABLE `subjects` DISABLE KEYS */;
-INSERT INTO `subjects` VALUES (1,'Хімія',1,0),(2,'Фізика',1,0),(3,'Вишка',1,0),(4,'Фізкультура',2,0),(5,'Метеорологія',2,0),(6,'Філософія',2,0);
+INSERT INTO `subjects` VALUES (1,'Хімія',1),(2,'Фізика',1),(3,'Вишка',1),(4,'Фізкультура',2),(5,'Метеорологія',2),(6,'Філософія',2),(7,'Олологія',2),(8,'Прикладний пофігізм (лек)',1),(9,'Прикладний пофігізм (практ)',1);
 /*!40000 ALTER TABLE `subjects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,30 +210,28 @@ INSERT INTO `teachers` VALUES (1,100,'Ostapiv'),(2,2,'Norris');
 UNLOCK TABLES;
 
 --
--- Table structure for table `user_roles`
+-- Table structure for table `userroles`
 --
 
-DROP TABLE IF EXISTS `user_roles`;
+DROP TABLE IF EXISTS `userroles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_roles` (
-  `USER_ROLE_ID` int(11) NOT NULL DEFAULT '0',
-  `USER_ID` int(10) NOT NULL,
-  `AUTHORITY` varchar(45) NOT NULL DEFAULT 'NONE',
-  PRIMARY KEY (`USER_ROLE_ID`),
-  KEY `FK_user_roles` (`USER_ID`),
-  CONSTRAINT `FK_user_roles` FOREIGN KEY (`USER_ID`) REFERENCES `users` (`USER_ID`)
+CREATE TABLE `userroles` (
+  `user_role_id` int(11) NOT NULL DEFAULT '0',
+  `authority` varchar(45) NOT NULL DEFAULT 'NONE',
+  PRIMARY KEY (`user_role_id`),
+  UNIQUE KEY `user_role_id_UNIQUE` (`user_role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user_roles`
+-- Dumping data for table `userroles`
 --
 
-LOCK TABLES `user_roles` WRITE;
-/*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
-INSERT INTO `user_roles` VALUES (1,1,'ROLE_STUDENT'),(2,2,'ROLE_USER'),(3,3,'ROLE_STUDENT'),(4,4,'ROLE_STUDENT'),(5,5,'ROLE_STUDENT'),(6,6,'ROLE_STUDENT'),(7,7,'ROLE_STUDENT'),(8,8,'ROLE_STUDENT'),(9,9,'ROLE_STUDENT'),(100,100,'ROLE_USER'),(100500,100500,'ROLE_ADMIN');
-/*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
+LOCK TABLES `userroles` WRITE;
+/*!40000 ALTER TABLE `userroles` DISABLE KEYS */;
+INSERT INTO `userroles` VALUES (0,'NONE'),(1,'ROLE_STUDENT'),(2,'ROLE_USER'),(3,'ROLE_ADMIN');
+/*!40000 ALTER TABLE `userroles` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -254,8 +248,9 @@ CREATE TABLE `users` (
   `ENABLED` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`USER_ID`),
   UNIQUE KEY `USERNAME_UNIQUE` (`USERNAME`),
-  UNIQUE KEY `USER_ID_UNIQUE` (`USER_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=100505 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `USER_ID_UNIQUE` (`USER_ID`),
+  KEY `fk_users_idx` (`USER_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=100514 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -264,8 +259,36 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'mvt-00001','098f6bcd4621d373cade4e832627b4f6',1),(2,'Norris','098f6bcd4621d373cade4e832627b4f6',1),(3,'mvt-00003','098f6bcd4621d373cade4e832627b4f6',1),(4,'mvt-00004','098f6bcd4621d373cade4e832627b4f6',1),(5,'mvt-00005','098f6bcd4621d373cade4e832627b4f6',1),(6,'mvt-00006','098f6bcd4621d373cade4e832627b4f6',1),(7,'student','098f6bcd4621d373cade4e832627b4f6',1),(8,'mvt-00008','098f6bcd4621d373cade4e832627b4f6',1),(9,'mvt-00009','098f6bcd4621d373cade4e832627b4f6',1),(100,'test','098f6bcd4621d373cade4e832627b4f6',1),(100500,'admin','21232f297a57a5a743894a0e4a801fc3',1),(100504,'aaa','47bce5c74f589f4867dbd57e9ca9f808',1);
+INSERT INTO `users` VALUES (1,'mvt-00001','098f6bcd4621d373cade4e832627b4f6',1),(2,'Norris','098f6bcd4621d373cade4e832627b4f6',1),(3,'mvt-00003','098f6bcd4621d373cade4e832627b4f6',1),(4,'mvt-00004','098f6bcd4621d373cade4e832627b4f6',1),(5,'mvt-00005','098f6bcd4621d373cade4e832627b4f6',1),(6,'mvt-00006','098f6bcd4621d373cade4e832627b4f6',1),(7,'student','098f6bcd4621d373cade4e832627b4f6',1),(8,'mvt-00008','098f6bcd4621d373cade4e832627b4f6',1),(9,'mvt-00009','098f6bcd4621d373cade4e832627b4f6',1),(100,'test','098f6bcd4621d373cade4e832627b4f6',1),(100500,'admin','21232f297a57a5a743894a0e4a801fc3',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users_and_roles`
+--
+
+DROP TABLE IF EXISTS `users_and_roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users_and_roles` (
+  `USER_ID` int(10) NOT NULL,
+  `USER_ROLE_ID` int(11) NOT NULL DEFAULT '0',
+  KEY `FK_user_roles` (`USER_ID`),
+  KEY `fk_user_id_idx` (`USER_ID`),
+  KEY `fk_role_id_idx` (`USER_ROLE_ID`),
+  CONSTRAINT `fk_role_id` FOREIGN KEY (`USER_ROLE_ID`) REFERENCES `userroles` (`user_role_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_user_id` FOREIGN KEY (`USER_ID`) REFERENCES `users` (`USER_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users_and_roles`
+--
+
+LOCK TABLES `users_and_roles` WRITE;
+/*!40000 ALTER TABLE `users_and_roles` DISABLE KEYS */;
+INSERT INTO `users_and_roles` VALUES (1,1),(2,2),(3,1),(4,1),(5,1),(6,1),(7,1),(8,1),(9,1),(100,2),(100500,3);
+/*!40000 ALTER TABLE `users_and_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -277,4 +300,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-03-29 11:16:34
+-- Dump completed on 2013-04-07 10:24:24
