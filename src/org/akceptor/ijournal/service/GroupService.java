@@ -46,6 +46,14 @@ public class GroupService {
 		return studentDAO.findStudentsByGroup(groupID).size();//findStudents();
 	}
 	
+	public void addGroup(String groupName){
+		groupDAO.addGroup(new Group(groupName));
+		
+	}
+	
+	public void deleteGroup(int groupID){
+		groupDAO.delete(new Group(groupID));
+	}
 	
 	
 }
