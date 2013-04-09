@@ -21,17 +21,16 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
 
+
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 		<mvc:resources mapping="/errorpages/**" location="/errorpages/" />
-	<mvc:resources mapping="/resources/**" location="/resources/" />
-	<mvc:resources mapping="/resources/images/**" location="/resources/images" />
+		<mvc:resources mapping="/resources/**" location="/resources/" />
+		<mvc:resources mapping="/resources/images/**" location="/resources/images" />
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/jsp directory -->
-		
-		
-		
+			
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
@@ -39,7 +38,6 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	
 	
 	
 </beans>

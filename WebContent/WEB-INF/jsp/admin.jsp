@@ -81,10 +81,12 @@
 			<!--First table-->
 			<div id="tab-one" >
 				<div style="float: left; border: thin solid black"><form name="edituser" action="/myJournal/admin/edituser" method="post">
-				<table border="1"><th>Username</th><th colspan=2>Controls</th>
+				<table border="1"><th>Username</th><th>Role</th><th colspan=2>Controls</th>
 				
 					<c:forEach var="user" items="${userList}" varStatus="usrCounter">
-					<tr><td>${user.username}</td><td><button type="submit" name ="editbtn">Edit</button></td><td><button type="submit" name ="deletebtn">Delete</button></td></tr>
+					<tr><td>${user.username}</td>
+					<td><img src="<c:url value="/resources/images/${user.userRole.userRoleID}.png" />"></td>
+					<td><button type="submit" name ="editbtn" value="${user.userID}">Edit</button></td><td><button type="submit" name ="deletebtn" value="${user.userID}">Delete</button></td></tr>
 					</c:forEach>
 				</table>
 				</form></div><div style="float: left; border: thin solid black">

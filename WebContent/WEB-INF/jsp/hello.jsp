@@ -58,11 +58,13 @@
 							value="${member.studentName}" disabled /></td>
 						<c:forEach var="date" items="${subjectDates}"
 							varStatus="dateCounter">
-							<td><select name="present"
+							<td>
+							<select name="present"
 								id="present_${dateCounter.count}_${studentCounter.count}" />
 								<option value="0"></option>
 								<option value="1">Н</option>
-								<option value="2">&empty;</option> </select> 
+								<option value="2">&empty;</option>
+							</select> 
 								<!-- Select items in comboboxes -->
 	<script type="text/javascript">
 	document.getElementById("present_${dateCounter.count}_${studentCounter.count}").selectedIndex=${absenceMarks.get(studentCounter.count-1)[dateCounter.count-1]};

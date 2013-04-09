@@ -57,8 +57,14 @@ public class AdminController {
 		public String editUser(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin");
-		if (request.getParameter("editbtn")!=null){System.out.println("Edit button pressed");};
-		if (request.getParameter("deletebtn")!=null){System.out.println("Delete button pressed");};
+		if (request.getParameter("editbtn")!=null){
+			System.out.println("Edit button pressed "+ request.getParameter("editbtn"));
+			
+		};
+		if (request.getParameter("deletebtn")!=null){
+			System.out.println("Delete button pressed "+ request.getParameter("deletebtn"));
+			userService.deleteUser(Integer.parseInt(request.getParameter("deletebtn")));
+		};
 		return "redirect:/admin";
 		}
 

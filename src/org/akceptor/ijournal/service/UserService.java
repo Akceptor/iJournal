@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import org.akceptor.ijournal.dao.UserDAO;
 import org.akceptor.ijournal.domain.User;
+import org.akceptor.ijournal.domain.UsersAndRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,8 @@ public class UserService {
 
 	@Autowired
 	private UserDAO userDAO;
+//	@Autowired 
+//	UserAndRoleService unrs;
 
 	public int getUserIDByName(String username) {
 		return userDAO.getUserByName(username).getUserID();
@@ -45,8 +48,19 @@ public class UserService {
 		
 		//set MD5-hashed password to User-object inctance
 		user.setPassword(hashtext);
+			
+		UsersAndRoles unr = new UsersAndRoles();
+		unr.setUserRoleID(0);
+		unr.setUser(user);
+		
+		user.setUserRole(unr);
 		userDAO.addUser(user);
+		
 
+	}
+	
+	public void deleteUser(int userID){
+		userDAO.delete(new User(userID));
 	}
 
 }

@@ -1,10 +1,12 @@
 package org.akceptor.ijournal.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +22,9 @@ public class User {
 	
 	@Column(name = "password")
 	private String password;
+	
+	@OneToOne(mappedBy="user", cascade=CascadeType.ALL)
+    private UsersAndRoles userRole;
 	
 	public int getUserID() {
 		return userID;
@@ -39,6 +44,11 @@ public class User {
 
 	public User() {
 	}
+	
+	public User(int userID) {
+		super();
+		this.userID = userID;
+	}
 
 	public String getUsername() {
 		return username;
@@ -47,6 +57,13 @@ public class User {
 	public void setUsername(String login) {
 		this.username = login;
 	}
-	
+
+	public UsersAndRoles getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(UsersAndRoles userRole) {
+		this.userRole = userRole;
+	}
 
 }

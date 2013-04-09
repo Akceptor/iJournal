@@ -25,7 +25,7 @@ public class UserRoles {
 	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
-
+	
 	public UserRoles() {
 	}
 	
