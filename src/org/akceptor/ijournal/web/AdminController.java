@@ -67,5 +67,29 @@ public class AdminController {
 		};
 		return "redirect:/admin";
 		}
+		
+		@RequestMapping(method = RequestMethod.POST, value="/editsubject")
+		public String editSubject(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("admin");
+		if (request.getParameter("editbtn")!=null){
+			System.out.println("Edit button pressed "+ request.getParameter("editbtn"));
+			
+		};
+		if (request.getParameter("deletebtn")!=null){
+			System.out.println("Delete button pressed "+ request.getParameter("deletebtn"));
+			subjectService.deleteSubject(Integer.parseInt(request.getParameter("deletebtn")));
+		};
+		return "redirect:/admin";
+		}
+		
+		@RequestMapping(method = RequestMethod.POST, value="/addsubject")
+		public String addSubject(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("admin");
+		System.out.println("ADD Subject "+request.getParameter("subject"));
+		subjectService.addSubject(request.getParameter("subject"));
+		return "redirect:/admin";
+		}
 
 }

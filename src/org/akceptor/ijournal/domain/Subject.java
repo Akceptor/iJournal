@@ -18,10 +18,13 @@ public class Subject {
 	@Column(name = "subject_id")
 	private int subjectID;
 
+	@Column(name = "teacher_id")
+	private int teacherID;
+	
 	@Column(name = "subject_name")
 	private String subjectName;
 	
-	 @OneToMany
+	 @OneToMany (mappedBy="subject")
 	 public Set<Lesson> lessons;
 	
 	public int getSubjectID() {
@@ -39,6 +42,33 @@ public class Subject {
 	public void setSubjectName(String subjectName) {
 		this.subjectName = subjectName;
 	}
+	
+	public int getTeacherID() {
+		return teacherID;
+	}
+
+	public void setTeacherID(int teacherID) {
+		this.teacherID = teacherID;
+	}
+
+	public Subject() {
+		
+	}
+	
+	public Subject(int subjectID) {
+		super();
+		this.subjectID = subjectID;
+	
+	}
+	
+	public Subject(String subjectName, int teacherID) {
+		super();
+		this.teacherID = teacherID;
+		this.subjectName = subjectName;
+	}
+
+	
+	
 	
 	
 //		@ManyToOne

@@ -52,6 +52,15 @@ public class SubjectService {
 		return subjectDAO.findSubjectsByStudentID(studentID);
 	}
 
+	public void addSubject(String subjectName){
+		subjectDAO.addSubject(new Subject(subjectName, 0));
+		
+	}
+	
+	public void deleteSubject(int subjectID){
+		subjectDAO.delete(new Subject(subjectID));
+	}
+	
 	public ArrayList<MyDate> getSubjectDatesByID(int subjectID) {
 		ArrayList<MyDate> dates = new ArrayList<MyDate>();
 		dates.add(new MyDate(0, "1.01.2013"));
