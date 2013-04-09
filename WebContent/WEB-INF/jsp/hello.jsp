@@ -22,7 +22,7 @@
 		<form name="group" action="/myJournal/hello" method="post">
 			Група: <select name="Group" style="width: 200">
 				<c:forEach var="group" items="${groups}">
-					<option value="${group.id}">${group.groupName}</option>
+					<option value="${group.groupID}">${group.groupName}</option>
 				</c:forEach>
 			</select> <br> Предмет: <select name="Subject" style="width: 200">
 				<c:forEach var="subject" items="${subjects}">
