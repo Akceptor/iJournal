@@ -74,7 +74,7 @@ public class MainController {
 			mav.addObject("selectedSubject", currentSubject);
 			//adding student list
 			mav.addObject("groupMembers",
-					groupService.getGroupMembersByID(currentGroup.getGroupID()));
+					groupService.getGroupMembersByID(currentGroup.getId()));
 						
 			// adding students marks for studentID & subjectID
 			//TO DO Move this to Service layer 
@@ -85,7 +85,7 @@ public class MainController {
 			ArrayList<Integer> totalAbs = new ArrayList<Integer>();
 			ArrayList<Integer> totalAbsOk = new ArrayList<Integer>();
 				for (Student student : groupService
-					.getGroupMembersByID(currentGroup.getGroupID())) {// for each
+					.getGroupMembersByID(currentGroup.getId())) {// for each
 																	// student
 				ArrayList<Integer> studentMarks = new ArrayList<Integer>();
 				ArrayList<Integer> lesonIDs = new ArrayList<Integer>();

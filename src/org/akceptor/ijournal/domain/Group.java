@@ -17,7 +17,7 @@ public class Group {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "group_id")
-	private int groupID;
+	private int id;
 
 	@Column(name = "group_name")
 	private String groupName;
@@ -27,13 +27,15 @@ public class Group {
     private Set<Student> students;
 	
 	
-	public int getGroupID() {
-		return groupID;
+	public Group() {
+	}
+	
+	public int getId() {
+		return id;
 	}
 
-
-	public void setGroupID(int groupID) {
-		this.groupID = groupID;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getGroupName() {
@@ -43,22 +45,5 @@ public class Group {
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
 	}
-	
-	public Group() {
-	}
-
-
-	public Group(String groupName) {
-		super();
-		this.groupName = groupName;
-	}
-
-
-	public Group(int groupID) {
-		super();
-		this.groupID = groupID;
-	}
-	
-	
 
 }

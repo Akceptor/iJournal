@@ -135,18 +135,11 @@
 							<c:forEach var="group" items="${groupList}" varStatus="groupCounter">
 							<tr>
 								<td>${group.groupName}</td>
-								<td><button type="submit" name ="editbtn" value="${group.groupID}">Edit</button></td>
-								<td><button type="submit" name ="deletebtn" value="${group.groupID}">Delete</button></td>
+								<td><button type="submit" name ="editbtn">Edit</button></td>
+								<td><button type="submit" name ="deletebtn">Delete</button></td>
 							</tr>
 							</c:forEach>
 						</table>
-					</form>
-				</div>
-				<div style="float: left; border: thin solid black">
-					<center><b>Add Group</b></center>
-					<form name="addgroup" action="/myJournal/admin/addgroup" method="post">
-						<input name="group" type="text"/>
-						<input type="submit" value="Add Group"/>
 					</form>
 				</div>								
 			</div>
@@ -185,7 +178,7 @@
 				</div>
 				<div style="float: left; border: thin solid black">
 					<center><b>Add Subject</b></center>
-					<form name="addsubject" action="/myJournal/admin/addsubject" method="post">
+					<form name="adduser" action="/myJournal/admin/addsubject" method="post">
 						<input name="subject" type="text"/>
 						<input type="submit" value="Add Subject"/>
 					</form>
