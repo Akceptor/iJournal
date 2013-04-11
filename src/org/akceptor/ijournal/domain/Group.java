@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,11 +23,19 @@ public class Group {
 	@Column(name = "group_name")
 	private String groupName;
 	
-	
-	@OneToMany(mappedBy="group")
+	@OneToMany(mappedBy="group", fetch=FetchType.EAGER) 
+	//Change to LAZY later and implement OpenSessionInView or http://habrahabr.ru/post/111911/
     private Set<Student> students;
 	
-	
+	public Set<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(Set<Student> students) {
+		this.students = students;
+	}
+
+
 	public int getGroupID() {
 		return groupID;
 	}

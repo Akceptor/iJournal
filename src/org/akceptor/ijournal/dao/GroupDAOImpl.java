@@ -81,7 +81,8 @@ public class GroupDAOImpl implements GroupDAO {
 	@Override
 	@Transactional
 	public Group getGroupByID(int groupID) {
-		return hibernateTemplate.get(Group.class, groupID);
+		System.out.println("Searching for groupID "+groupID);
+		return (Group) hibernateTemplate.find("FROM Group AS g WHERE g.groupID="+groupID).get(0);
 	}
 
 	@SuppressWarnings("unchecked")

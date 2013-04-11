@@ -1,7 +1,6 @@
 package org.akceptor.ijournal.service;
 
 import java.util.ArrayList;
-
 import org.akceptor.ijournal.dao.GroupDAO;
 import org.akceptor.ijournal.dao.StudentDAO;
 import org.akceptor.ijournal.domain.Student;
@@ -15,6 +14,10 @@ public class StudentService {
 	private GroupDAO groupDAO;
 	@Autowired
 	private StudentDAO studentDAO;
+	@Autowired
+	GroupService groupService;
+	@Autowired
+	UserService userService;
 	
 	public ArrayList<Student> getStudents(){
 		/** 
@@ -45,10 +48,17 @@ public class StudentService {
 	}
 	
 	public int getStudentIDByUserID(int userID) {
-		return studentDAO.getStudentByUserID(userID).get(0).getStudentID();
+		return studentDAO.getStudentByUserID(userID).getStudentID();
 	}
 	
 	public Student getStudentByID(int studentID){
 		return studentDAO.getStudentByID(studentID).get(0);
 	}
+
+	
+	public void deleteStudent(int studentID){
+		studentDAO.delete(new Student(studentID));
+	}
+	
+	
 }

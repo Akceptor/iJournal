@@ -55,12 +55,52 @@
 	};
 	
 	function hideAll(){
+		//hide all main DIV's
 	    document.getElementById("tab-one").hidden = true;
 	    document.getElementById("tab-two").hidden = true;
 	    document.getElementById("tab-three").hidden = true;
 	    document.getElementById("tab-four").hidden = true;
 	    document.getElementById("tab-five").hidden = true;
+	    //hide all but student add-user DIV's
+	    document.getElementById("student-form").hidden = false;
+		document.getElementById("teacher-form").hidden = true;
+		document.getElementById("admin-form").hidden = true;
+		document.getElementById("anon-form").hidden = true;
 	};
+	
+	function selectRole(){
+		var Index = document.adduser.role.options[document.adduser.role.selectedIndex].value;
+		if (Index==1){
+			//show student fields
+			document.getElementById("student-form").hidden = false;
+			document.getElementById("teacher-form").hidden = true;
+			document.getElementById("admin-form").hidden = true;
+			document.getElementById("anon-form").hidden = true;
+		}
+		if (Index==2){
+			//show teacher fields
+			document.getElementById("student-form").hidden = true;
+			document.getElementById("teacher-form").hidden = false;
+			document.getElementById("admin-form").hidden = true;
+			document.getElementById("anon-form").hidden = true;
+		}
+		if (Index==3){
+			//show admin fields
+			document.getElementById("student-form").hidden = true;
+			document.getElementById("teacher-form").hidden = true;
+			document.getElementById("admin-form").hidden = false;
+			document.getElementById("anon-form").hidden = true;
+		}
+		if (Index==0){
+			//show anonymous fields
+			document.getElementById("student-form").hidden = true;
+			document.getElementById("teacher-form").hidden = true;
+			document.getElementById("admin-form").hidden = true;
+			document.getElementById("anon-form").hidden = false;
+		}
+		//alert("Selected "+Index);
+		
+	}
 </script>
 
 </head>
@@ -98,11 +138,38 @@
 				<div style="float: left; border: thin solid black">
 					<center><b>Add User</b></center>
 						<form name="adduser" action="/myJournal/admin/adduser" method="post">
-							<input name="username" type="text"/>
-							<input name="password" type="text"/>
-							<input type="submit" value="Add User"/>
+						
+								<input name="username" placeholder="Логін" type="text" required/>
+								<input name="password" type="text" placeholder="Пароль" required/>
+								<select name="role" id="role" onChange="selectRole()">
+									<option value=0>Anonymous</option>
+									<option value=1 selected="selected">Student</option>
+									<option value=2>Teacher</option>
+									<option value=3>Administrator</option>
+								</select>
+								<input type="submit" value="Add User"/>
+							<br>	
+							<div id="student-form" style="float: left; ">
+									<input name="studentname" type="text" placeholder="Як звати студента" />
+									<input name="bookNr" type="text" placeholder="Номер заліковки" />
+									<input name="groupNr" type="text" placeholder="Група" />
+							</div>
+							<div id="teacher-form" style="float: left; ">
+									<input name="teachername" type="text" placeholder="Як звати викладача" />
+							</div>	
+							<div id="admin-form" style="float: left; ">
+									Для адміністраторів немає додаткових полів :)
+							</div>
+							<div id="anon-form" style="float: left; ">
+									Ви точно впевнені, що потрібен такий юзер? :)
+							</div>
 						</form>
+							
+								
+								
+								
 				</div>
+				
 			</div>
 
 

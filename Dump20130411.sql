@@ -53,7 +53,7 @@ CREATE TABLE `groups` (
   `group_name` varchar(45) NOT NULL,
   PRIMARY KEY (`group_id`),
   UNIQUE KEY `group_name_UNIQUE` (`group_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62,7 +62,7 @@ CREATE TABLE `groups` (
 
 LOCK TABLES `groups` WRITE;
 /*!40000 ALTER TABLE `groups` DISABLE KEYS */;
-INSERT INTO `groups` VALUES (1,'MVT-01'),(2,'MVT-02'),(3,'MVT-03'),(4,'MVT-04'),(100,'Pink Floyd');
+INSERT INTO `groups` VALUES (1,'MVT-01'),(2,'MVT-02'),(3,'MVT-03'),(4,'MVT-04'),(100,'Pink Floyd'),(0,'Студенти без груп');
 /*!40000 ALTER TABLE `groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,14 +136,16 @@ CREATE TABLE `students` (
   `book_nr` varchar(45) NOT NULL,
   `student_fio` varchar(45) NOT NULL,
   `group_id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`student_id`),
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`student_id`,`user_id`),
   UNIQUE KEY `book_nr_UNIQUE` (`book_nr`),
+  UNIQUE KEY `user_id_UNIQUE` (`user_id`),
   KEY `fk_group_id_idx` (`group_id`),
   KEY `fk_user_id_idx` (`user_id`),
-  CONSTRAINT `fk_group_id` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_user_s_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=100503 DEFAULT CHARSET=utf8;
+  KEY `fk_student_user_id_idx` (`user_id`),
+  CONSTRAINT `fk_student_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_group_id` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=100516 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,7 +154,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (1,'mvt-00001','Ivanov I.I.',1,1),(2,'mvt-00002','Petrov P.P.',1,2),(3,'mvt-00003','Ivanov I.S.',1,3),(4,'mvt-00012','Sidirov S.S.',2,4),(5,'mvt-00021','Kozloff K.Z.',2,5),(6,'mvt-00022','Jonson J.S.',1,6),(100500,'Pink-001','Девід Ґілмор',100,8),(100502,'Pink-003','Річард Райт',100,NULL);
+INSERT INTO `students` VALUES (1,'mvt-00001','Ivanov I.I.',1,1),(2,'mvt-00002','Petrov P.P.',1,2),(3,'mvt-00003','Ivanov I.S.',1,3),(4,'mvt-00012','Sidirov S.S.',2,4),(5,'mvt-00021','Kozloff K.Z.',2,5),(6,'mvt-00022','Jonson J.S.',1,6),(100500,'Pink-001','Девід Ґілмор',100,8),(100515,'wwwww','ss',2,100568);
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,7 +252,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `USERNAME_UNIQUE` (`USERNAME`),
   UNIQUE KEY `USER_ID_UNIQUE` (`USER_ID`),
   KEY `fk_users_idx` (`USER_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=100523 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=100569 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -259,7 +261,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'mvt-00001','098f6bcd4621d373cade4e832627b4f6',1),(2,'Norris','098f6bcd4621d373cade4e832627b4f6',1),(3,'mvt-00003','098f6bcd4621d373cade4e832627b4f6',1),(4,'mvt-00004','098f6bcd4621d373cade4e832627b4f6',1),(5,'mvt-00005','098f6bcd4621d373cade4e832627b4f6',1),(6,'mvt-00006','098f6bcd4621d373cade4e832627b4f6',1),(8,'mvt-00008','098f6bcd4621d373cade4e832627b4f6',1),(100,'test','098f6bcd4621d373cade4e832627b4f6',1),(100500,'admin','21232f297a57a5a743894a0e4a801fc3',1);
+INSERT INTO `users` VALUES (1,'mvt-00001','098f6bcd4621d373cade4e832627b4f6',1),(2,'Norris','098f6bcd4621d373cade4e832627b4f6',1),(3,'mvt-00003','098f6bcd4621d373cade4e832627b4f6',1),(4,'mvt-00004','098f6bcd4621d373cade4e832627b4f6',1),(5,'mvt-00005','098f6bcd4621d373cade4e832627b4f6',1),(6,'mvt-00006','098f6bcd4621d373cade4e832627b4f6',1),(8,'mvt-00008','098f6bcd4621d373cade4e832627b4f6',1),(100,'test','098f6bcd4621d373cade4e832627b4f6',1),(100500,'admin','21232f297a57a5a743894a0e4a801fc3',1),(100568,'aaa','47bce5c74f589f4867dbd57e9ca9f808',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -279,7 +281,7 @@ CREATE TABLE `users_and_roles` (
   KEY `fk_role_id_idx` (`USER_ROLE_ID`),
   CONSTRAINT `fk_user_id` FOREIGN KEY (`USER_ID`) REFERENCES `users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_role_id` FOREIGN KEY (`USER_ROLE_ID`) REFERENCES `userroles` (`user_role_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=100523 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=100569 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -288,7 +290,7 @@ CREATE TABLE `users_and_roles` (
 
 LOCK TABLES `users_and_roles` WRITE;
 /*!40000 ALTER TABLE `users_and_roles` DISABLE KEYS */;
-INSERT INTO `users_and_roles` VALUES (1,1),(3,1),(4,1),(5,1),(6,1),(8,1),(2,2),(100,2),(100500,3);
+INSERT INTO `users_and_roles` VALUES (1,1),(3,1),(4,1),(5,1),(6,1),(8,1),(100568,1),(2,2),(100,2),(100500,3);
 /*!40000 ALTER TABLE `users_and_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -301,4 +303,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-04-09 15:39:45
+-- Dump completed on 2013-04-11  9:32:02

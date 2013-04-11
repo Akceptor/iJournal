@@ -44,12 +44,6 @@ public class StudentDAOImpl implements StudentDAO {
 	}
 
 	@Transactional
-	public void addStudent(Student student) {
-		hibernateTemplate.save(student);
-		hibernateTemplate.flush();
-	}
-
-	@Transactional
 	public void delete(Student student) {
 		hibernateTemplate.delete(student);
 		hibernateTemplate.flush();
@@ -91,11 +85,11 @@ public class StudentDAOImpl implements StudentDAO {
 		return hibernateTemplate.get(Student.class, bookNr);
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-	public List<Student> getStudentByUserID(int userID) {
-		return hibernateTemplate.find("from Student where user_id =" + userID);
+	public Student getStudentByUserID(int userID) {
+		System.out.println("userID in studentDAO: "+userID);
+		return (Student) hibernateTemplate.find("FROM Student WHERE user_id = " + userID).get(0);
 	}
 	
 	@Override

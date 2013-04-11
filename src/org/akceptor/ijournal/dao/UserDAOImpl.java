@@ -62,7 +62,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Transactional
 	public User getUserByName(String name) {
-		//return hibernateTemplate.get(User.class, name);
+		
 		try 
 		{
 			return (User) hibernateTemplate.find("from User WHERE username='"+name+"'").get(0);
@@ -77,7 +77,19 @@ public class UserDAOImpl implements UserDAO {
 		return hibernateTemplate.find("from User order by username");
 	}
 	
+	@Transactional
+	public int getLastUser() {
+		User currentUser = (User) hibernateTemplate.find("from User order by user_id DESC").get(0);
+		return currentUser.getUserID();
+	}
+	
 	public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
+
+	@Override
+	public User getUserByID(int userID) {
+		System.out.println("userID in DAO: "+userID);
+		return (User) hibernateTemplate.find("from User WHERE user_id= "+userID).get(0);
+	}
 }

@@ -10,4 +10,6 @@ public interface UserDAO {
 	public void delete(User user);
 	public User getUserByName(String username);
 	public List<User> findUsers();
+	public int getLastUser();
+	public User getUserByID(int userID);
 }

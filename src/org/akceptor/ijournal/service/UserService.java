@@ -6,6 +6,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 import org.akceptor.ijournal.dao.UserDAO;
+import org.akceptor.ijournal.domain.Group;
+import org.akceptor.ijournal.domain.Student;
 import org.akceptor.ijournal.domain.User;
 import org.akceptor.ijournal.domain.UsersAndRoles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ public class UserService {
 
 	@Autowired
 	private UserDAO userDAO;
+	@Autowired
+	GroupService groupService;
 //	@Autowired 
 //	UserAndRoleService unrs;
 
@@ -28,7 +32,7 @@ public class UserService {
 
 	}
 
-	public void addUser(String login, String password) {
+	public void addUser(String login, String password, int role, String studentName, String bookNr, int groupNr) {
 		User user = new User();
 		user.setUsername(login);
 		// MD5 hash password
@@ -48,11 +52,30 @@ public class UserService {
 		
 		//set MD5-hashed password to User-object inctance
 		user.setPassword(hashtext);
-			
-		UsersAndRoles unr = new UsersAndRoles();
-		unr.setUserRoleID(0);
-		unr.setUser(user);
 		
+		//create new userrole stub, set selected roleID and set role to user
+		UsersAndRoles unr = new UsersAndRoles();
+		unr.setUserRoleID(role);
+		unr.setUser(user);
+		//if user is student
+		if (studentName!=null){
+			//create student object and set it's properties
+			Student student = new Student();
+			student.setStudentName(studentName);
+			student.setBookNr(bookNr);
+			//set current user to student
+			student.setUser(user);
+			
+			//create group stub for student
+			Group group = groupService.getGroupByID(groupNr);
+			System.out.println("   >>>>>>>>>>>                  group is "+group.getGroupName());
+			//set group
+			student.setGroup(group);
+			
+			//finally, set student to user
+			user.setStudent(student);
+		}
+		//set userrole and commit user to DB
 		user.setUserRole(unr);
 		userDAO.addUser(user);
 		
@@ -61,6 +84,14 @@ public class UserService {
 	
 	public void deleteUser(int userID){
 		userDAO.delete(new User(userID));
+	}
+	
+	public User getUserByID(int userID){
+		return userDAO.getUserByID(userID);
+	}
+	
+	public int getLastUser(){
+		return userDAO.getLastUser();
 	}
 
 }

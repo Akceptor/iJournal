@@ -6,7 +6,6 @@ import java.util.List;
 import org.akceptor.ijournal.domain.Student;
 
 public interface StudentDAO {
-	public void addStudent(Student student);
 	public void updateStudent(Student student);
 	public void delete(Student student);
 	public Student getStudentByFIO(String studentFIO);
@@ -14,7 +13,7 @@ public interface StudentDAO {
 	public List<Student> findStudents();
 	public ArrayList<Student> findStudentsByGroup(int groupID);
 	public String getStudentFIOByID(int studentID);
-	public List<Student> getStudentByUserID(int userID);
+	public Student getStudentByUserID(int userID);
 	public List<Student> getStudentByID(int studentID);
 
 }
