@@ -152,7 +152,11 @@
 							<div id="student-form" style="float: left; ">
 									<input name="studentname" type="text" placeholder="Як звати студента" />
 									<input name="bookNr" type="text" placeholder="Номер заліковки" />
-									<input name="groupNr" type="text" placeholder="Група" />
+									<select name="groupNr">
+										<c:forEach var="group" items="${groupList}">
+										<option value="${group.groupID}">${group.groupName}</option>
+										</c:forEach>
+									</select>
 							</div>
 							<div id="teacher-form" style="float: left; ">
 									<input name="teachername" type="text" placeholder="Як звати викладача" />
