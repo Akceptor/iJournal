@@ -53,7 +53,7 @@ CREATE TABLE `groups` (
   `group_name` varchar(45) NOT NULL,
   PRIMARY KEY (`group_id`),
   UNIQUE KEY `group_name_UNIQUE` (`group_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62,7 +62,7 @@ CREATE TABLE `groups` (
 
 LOCK TABLES `groups` WRITE;
 /*!40000 ALTER TABLE `groups` DISABLE KEYS */;
-INSERT INTO `groups` VALUES (1,'MVT-01'),(2,'MVT-02'),(3,'MVT-03'),(4,'MVT-04'),(100,'Pink Floyd'),(0,'Студенти без груп');
+INSERT INTO `groups` VALUES (1,'MVT-01'),(2,'MVT-02'),(3,'MVT-03'),(4,'MVT-04'),(100,'Pink Floyd'),(0,'Без групи');
 /*!40000 ALTER TABLE `groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +96,7 @@ CREATE TABLE `lesson` (
 
 LOCK TABLES `lesson` WRITE;
 /*!40000 ALTER TABLE `lesson` DISABLE KEYS */;
-INSERT INTO `lesson` VALUES (1,1,1,3,'1'),(2,1,1,4,'0'),(3,1,1,0,'1'),(4,1,1,5,'1'),(5,1,1,2,'0'),(6,1,1,0,'1'),(7,2,1,3,'0'),(8,2,1,3,'0'),(9,2,1,3,'0'),(10,2,1,3,'0'),(11,2,1,3,'0'),(12,2,1,0,'1'),(13,3,1,3,'2'),(14,3,1,0,'0'),(15,3,1,0,'0'),(16,3,1,0,'0'),(17,3,1,0,'0'),(18,3,1,0,'1'),(19,4,1,1,'0'),(20,4,1,0,'0'),(21,4,1,0,'0'),(22,4,1,0,'0'),(23,4,1,0,'0'),(24,4,1,5,'0'),(25,5,1,3,'0'),(26,5,1,0,'0'),(27,5,1,5,'0'),(28,5,1,0,'0'),(29,5,1,0,'0'),(30,5,1,5,'0'),(31,6,1,8,'0'),(32,6,1,0,'1'),(33,6,1,0,'0'),(34,6,1,0,'0'),(35,6,1,0,'0'),(36,6,1,0,'1'),(37,1,2,0,'0'),(38,1,2,1,'0'),(39,1,2,0,'0'),(40,1,2,0,'0'),(41,1,2,0,'0'),(42,1,2,0,'0'),(43,2,2,0,'0'),(44,2,2,0,'0'),(45,2,2,0,'0'),(46,2,2,0,'0'),(47,2,2,3,'0'),(48,2,2,0,'1'),(49,3,2,0,'0'),(50,3,2,0,'0'),(51,3,2,2,'0'),(52,3,2,0,'0'),(53,3,2,0,'0'),(54,3,2,0,'0'),(55,4,2,0,'0'),(56,4,2,0,'0'),(57,4,2,0,'0'),(58,4,2,0,'0'),(59,4,2,0,'0'),(60,4,2,0,'0'),(61,5,2,1,'0'),(62,5,2,0,'0'),(63,5,2,5,'0'),(64,5,2,0,'0'),(65,5,2,0,'0'),(66,5,2,5,'0'),(67,6,2,0,'2'),(68,6,2,0,'0'),(69,6,2,0,'0'),(70,6,2,0,'0'),(71,6,2,0,'0'),(72,6,2,4,'0');
+INSERT INTO `lesson` VALUES (1,1,1,3,'1'),(2,1,1,4,'0'),(3,1,1,0,'1'),(4,1,1,5,'1'),(5,1,1,2,'0'),(6,1,1,0,'1'),(7,2,1,3,'0'),(8,2,1,3,'0'),(9,2,1,3,'0'),(10,2,1,3,'0'),(11,2,1,3,'0'),(12,2,1,0,'1'),(13,3,1,3,'2'),(14,3,1,0,'0'),(15,3,1,0,'0'),(16,3,1,0,'0'),(17,3,1,0,'0'),(18,3,1,0,'1'),(19,4,1,1,'0'),(20,4,1,0,'0'),(21,4,1,0,'0'),(22,4,1,0,'0'),(23,4,1,0,'0'),(24,4,1,5,'0'),(25,5,1,3,'0'),(26,5,1,0,'0'),(27,5,1,5,'0'),(28,5,1,0,'0'),(29,5,1,0,'0'),(30,5,1,5,'0'),(31,6,1,5,'0'),(32,6,1,0,'1'),(33,6,1,0,'0'),(34,6,1,0,'0'),(35,6,1,0,'0'),(36,6,1,0,'1'),(37,1,2,0,'0'),(38,1,2,1,'0'),(39,1,2,0,'0'),(40,1,2,0,'0'),(41,1,2,0,'0'),(42,1,2,0,'0'),(43,2,2,0,'0'),(44,2,2,0,'0'),(45,2,2,0,'0'),(46,2,2,0,'0'),(47,2,2,3,'0'),(48,2,2,0,'1'),(49,3,2,0,'0'),(50,3,2,0,'0'),(51,3,2,2,'0'),(52,3,2,0,'0'),(53,3,2,0,'0'),(54,3,2,0,'0'),(55,4,2,0,'0'),(56,4,2,0,'0'),(57,4,2,0,'0'),(58,4,2,0,'0'),(59,4,2,0,'0'),(60,4,2,0,'0'),(61,5,2,1,'0'),(62,5,2,0,'0'),(63,5,2,5,'0'),(64,5,2,0,'0'),(65,5,2,0,'0'),(66,5,2,5,'0'),(67,6,2,0,'2'),(68,6,2,0,'0'),(69,6,2,0,'0'),(70,6,2,0,'0'),(71,6,2,0,'0'),(72,6,2,4,'0');
 /*!40000 ALTER TABLE `lesson` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,7 +145,7 @@ CREATE TABLE `students` (
   KEY `fk_student_user_id_idx` (`user_id`),
   CONSTRAINT `fk_student_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_group_id` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=100516 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=100520 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,7 +154,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (1,'mvt-00001','Ivanov I.I.',1,1),(2,'mvt-00002','Petrov P.P.',1,2),(3,'mvt-00003','Ivanov I.S.',1,3),(4,'mvt-00012','Sidirov S.S.',2,4),(5,'mvt-00021','Kozloff K.Z.',2,5),(6,'mvt-00022','Jonson J.S.',1,6),(100500,'Pink-001','Девід Ґілмор',100,8),(100515,'wwwww','ss',2,100568);
+INSERT INTO `students` VALUES (1,'mvt-00001','Ivanov I.I.',1,1),(2,'mvt-00002','Petrov P.P.',1,2),(3,'mvt-00003','Ivanov I.S.',1,3),(4,'mvt-00012','Sidirov S.S.',2,4),(5,'mvt-00021','Kozloff K.Z.',2,5),(6,'mvt-00022','Jonson J.S.',1,6),(100500,'Pink-001','Девід Ґілмор',100,8),(100519,'100500a','Sample Student',100,100577);
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,7 +171,7 @@ CREATE TABLE `subjects` (
   `teacher_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`subject_id`),
   UNIQUE KEY `subject_id_UNIQUE` (`subject_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,7 +180,7 @@ CREATE TABLE `subjects` (
 
 LOCK TABLES `subjects` WRITE;
 /*!40000 ALTER TABLE `subjects` DISABLE KEYS */;
-INSERT INTO `subjects` VALUES (1,'Хімія',1),(2,'Фізика',1),(3,'Вишка',1),(4,'Фізкультура',2),(5,'Метеорологія',2),(6,'Філософія',2),(7,'Олологія',2),(8,'Прикладний пофігізм (лек)',1),(9,'Прикладний пофігізм (практ)',1);
+INSERT INTO `subjects` VALUES (1,'Хімія',2),(2,'Фізика',2),(3,'Вишка',2),(4,'Фізкультура',4),(5,'Метеорологія',4),(6,'Філософія',4),(8,'Прикладний пофігізм (лек)',2),(9,'Прикладний пофігізм (практ)',2),(10,'Копання траншей',0);
 /*!40000 ALTER TABLE `subjects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,13 +192,14 @@ DROP TABLE IF EXISTS `teachers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `teachers` (
-  `teacher_id` int(11) NOT NULL,
+  `teacher_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `teacher_fio` varchar(150) NOT NULL,
-  PRIMARY KEY (`teacher_id`),
+  PRIMARY KEY (`teacher_id`,`user_id`),
+  UNIQUE KEY `user_id_UNIQUE` (`user_id`),
   KEY `fk_user_id_idx` (`user_id`),
   CONSTRAINT `fk_user_t_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -207,7 +208,7 @@ CREATE TABLE `teachers` (
 
 LOCK TABLES `teachers` WRITE;
 /*!40000 ALTER TABLE `teachers` DISABLE KEYS */;
-INSERT INTO `teachers` VALUES (1,100,'Ostapiv'),(2,2,'Norris');
+INSERT INTO `teachers` VALUES (2,2,'Norris'),(4,100573,'Test Teacher'),(7,100578,'Долішня Н.Б.');
 /*!40000 ALTER TABLE `teachers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -252,7 +253,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `USERNAME_UNIQUE` (`USERNAME`),
   UNIQUE KEY `USER_ID_UNIQUE` (`USER_ID`),
   KEY `fk_users_idx` (`USER_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=100569 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=100580 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -261,7 +262,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'mvt-00001','098f6bcd4621d373cade4e832627b4f6',1),(2,'Norris','098f6bcd4621d373cade4e832627b4f6',1),(3,'mvt-00003','098f6bcd4621d373cade4e832627b4f6',1),(4,'mvt-00004','098f6bcd4621d373cade4e832627b4f6',1),(5,'mvt-00005','098f6bcd4621d373cade4e832627b4f6',1),(6,'mvt-00006','098f6bcd4621d373cade4e832627b4f6',1),(8,'mvt-00008','098f6bcd4621d373cade4e832627b4f6',1),(100,'test','098f6bcd4621d373cade4e832627b4f6',1),(100500,'admin','21232f297a57a5a743894a0e4a801fc3',1),(100568,'aaa','47bce5c74f589f4867dbd57e9ca9f808',1);
+INSERT INTO `users` VALUES (1,'mvt-00001','098f6bcd4621d373cade4e832627b4f6',1),(2,'Norris','098f6bcd4621d373cade4e832627b4f6',1),(3,'mvt-00003','098f6bcd4621d373cade4e832627b4f6',1),(4,'mvt-00004','098f6bcd4621d373cade4e832627b4f6',1),(5,'mvt-00005','098f6bcd4621d373cade4e832627b4f6',1),(6,'mvt-00006','098f6bcd4621d373cade4e832627b4f6',1),(8,'mvt-00008','098f6bcd4621d373cade4e832627b4f6',1),(100500,'admin','21232f297a57a5a743894a0e4a801fc3',1),(100570,'akceptor','c62c7e9bfc53d8c7067952414507849c',1),(100572,'mvtz-110001','daef9f5e46ffc1283598fc9e56fd509e',1),(100573,'test','098f6bcd4621d373cade4e832627b4f6',1),(100577,'student','098f6bcd4621d373cade4e832627b4f6',1),(100578,'dolishnya','098f6bcd4621d373cade4e832627b4f6',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -281,7 +282,7 @@ CREATE TABLE `users_and_roles` (
   KEY `fk_role_id_idx` (`USER_ROLE_ID`),
   CONSTRAINT `fk_user_id` FOREIGN KEY (`USER_ID`) REFERENCES `users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_role_id` FOREIGN KEY (`USER_ROLE_ID`) REFERENCES `userroles` (`user_role_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=100569 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=100580 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -290,7 +291,7 @@ CREATE TABLE `users_and_roles` (
 
 LOCK TABLES `users_and_roles` WRITE;
 /*!40000 ALTER TABLE `users_and_roles` DISABLE KEYS */;
-INSERT INTO `users_and_roles` VALUES (1,1),(3,1),(4,1),(5,1),(6,1),(8,1),(100568,1),(2,2),(100,2),(100500,3);
+INSERT INTO `users_and_roles` VALUES (1,1),(3,1),(4,1),(5,1),(6,1),(8,1),(100572,1),(100577,1),(2,2),(100573,2),(100578,2),(100500,3),(100570,3);
 /*!40000 ALTER TABLE `users_and_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -303,4 +304,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-04-11  9:32:02
+-- Dump completed on 2013-04-11 16:34:17

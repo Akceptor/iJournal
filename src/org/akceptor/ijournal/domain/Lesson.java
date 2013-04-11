@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -86,13 +84,13 @@ public class Lesson implements java.io.Serializable{
 		this.absense = absense;
 	}
 
-	@ManyToOne
-    @JoinColumn(name="student_id", referencedColumnName = "student_id", insertable = false, updatable = false)
-    private Student students;
-	
-	@ManyToOne
-	@JoinColumn(name="subject_id", referencedColumnName = "subject_id", insertable = false, updatable = false)
-    private Subject subject;
+//	@ManyToOne
+//    @JoinColumn(name="student_id", referencedColumnName = "student_id", insertable = false, updatable = false)
+//    private Student students;
+//	
+//	@ManyToOne
+//	@JoinColumn(name="subject_id", referencedColumnName = "subject_id", insertable = false, updatable = false)
+//    private Subject subject;
 	
 	public Lesson() {
 	}

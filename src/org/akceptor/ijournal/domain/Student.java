@@ -1,7 +1,5 @@
 package org.akceptor.ijournal.domain;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -46,8 +43,8 @@ public class Student {
 	@PrimaryKeyJoinColumn
 	private User user;
 
-	@OneToMany(mappedBy="lessonID")
-    private Set<Lesson> lessons;
+//	@OneToMany(mappedBy="lessonID")
+//    private Set<Lesson> lessons;
 
 	public int getStudentID() {
 		return studentID;

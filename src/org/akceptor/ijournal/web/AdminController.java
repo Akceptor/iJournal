@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+/*
+ * Handles main admin page and all adding stuff for administrator role
+ */
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -42,6 +45,7 @@ public class AdminController {
 		mav.setViewName("admin");
 		return mav;
 		}
+		
 		/*
 		 * Adding new user
 		 */
@@ -49,67 +53,38 @@ public class AdminController {
 		public String addUser(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin");
-		
-		//Add global user
-		
-		
+			
 		//Add student called
 		if (request.getParameter("role").equals("1")){
 			int groupNr = 0;
 			//Adding new student record
-			try{
-				groupNr = Integer.parseInt(request.getParameter("groupNr"));
-			} catch (Exception e){
-				groupNr = 0;
-			}
-			System.err.println(">>>>>>>>>>>>>>>>");
-			System.out.println("ADD USER "+request.getParameter("username")+" with pass "+request.getParameter("password"));
+				try{
+					groupNr = Integer.parseInt(request.getParameter("groupNr"));
+				} catch (Exception e){
+					groupNr = 0;
+				}
+			System.out.println("ADDING STUDENT USER "+request.getParameter("username")+" with pass "+request.getParameter("password"));
 			userService.addUser(request.getParameter("username"), request.getParameter("password"), 
 					Integer.parseInt(request.getParameter("role")), request.getParameter("studentname"), 
-					request.getParameter("bookNr"), groupNr);
-			
-			//studentService.addStudent(userService.getLastUser(), request.getParameter("studentname"), request.getParameter("bookNr"), groupNr);
-		}
+					request.getParameter("bookNr"), groupNr, "");
+			}
 		
+			//Add teacher called
+			if (request.getParameter("role").equals("2")){
+				//Adding new teacher record
+				System.out.println("ADDING TEACHER USER "+request.getParameter("username")+" with pass "+request.getParameter("password"));
+				userService.addUser(request.getParameter("username"), request.getParameter("password"), 
+						Integer.parseInt(request.getParameter("role")), "", "", 0, request.getParameter("teachername"));
+			}
+				
+			//Add administrator called
+			if (request.getParameter("role").equals("3")){
+				//Adding new admin record
+				System.out.println("ADDING ADMINISTRATOR USER "+request.getParameter("username")+" with pass "+request.getParameter("password"));
+				userService.addUser(request.getParameter("username"), request.getParameter("password"), 
+						Integer.parseInt(request.getParameter("role")), "", "", 0, "");
+			}
 		
-		return "redirect:/admin";
-		}
-		
-		/*
-		 * Editing existed user
-		 */
-		@RequestMapping(method = RequestMethod.POST, value="/edituser")
-		public String editUser(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin");
-		if (request.getParameter("editbtn")!=null){
-			System.out.println("Edit button pressed "+ request.getParameter("editbtn"));
-			
-		};
-		if (request.getParameter("deletebtn")!=null){
-			System.out.println("Delete button pressed "+ request.getParameter("deletebtn"));
-			int userID = Integer.parseInt(request.getParameter("deletebtn"));
-			userService.deleteUser(userID);
-			
-		};
-		return "redirect:/admin";
-		}
-		
-		/*
-		 * Editing existed subject
-		 */
-		@RequestMapping(method = RequestMethod.POST, value="/editsubject")
-		public String editSubject(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin");
-		if (request.getParameter("editbtn")!=null){
-			System.out.println("Edit button pressed "+ request.getParameter("editbtn"));
-			
-		};
-		if (request.getParameter("deletebtn")!=null){
-			System.out.println("Delete button pressed "+ request.getParameter("deletebtn"));
-			subjectService.deleteSubject(Integer.parseInt(request.getParameter("deletebtn")));
-		};
 		return "redirect:/admin";
 		}
 		
@@ -122,24 +97,6 @@ public class AdminController {
 		mav.setViewName("admin");
 		System.out.println("ADD Subject "+request.getParameter("subject"));
 		subjectService.addSubject(request.getParameter("subject"));
-		return "redirect:/admin";
-		}
-		
-		/*
-		 * Editing existed group
-		 */
-		@RequestMapping(method = RequestMethod.POST, value="/editgroup")
-		public String editGroup(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin");
-		if (request.getParameter("editbtn")!=null){
-			System.out.println("Edit button pressed "+ request.getParameter("editbtn"));
-			
-		};
-		if (request.getParameter("deletebtn")!=null){
-			System.out.println("Delete button pressed "+ request.getParameter("deletebtn"));
-			groupService.deleteGroup(Integer.parseInt(request.getParameter("deletebtn")));
-		};
 		return "redirect:/admin";
 		}
 		

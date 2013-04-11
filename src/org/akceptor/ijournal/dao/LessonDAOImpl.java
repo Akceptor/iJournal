@@ -70,8 +70,11 @@ public class LessonDAOImpl implements LessonDAO {
 	@SuppressWarnings("unchecked")
 	@Transactional
 	public ArrayList<Lesson> getStudentsDataBySubject(int studentID, int subjectID) {
-	
-		return (ArrayList<Lesson>) hibernateTemplate.find("SELECT l FROM Lesson AS l WHERE l.studentID=" + studentID +" AND l.subjectID="+subjectID);
+		System.out.println(">>>>>>>>>>>>>>      Getting student data ");
+		System.out.println(">>>>>>>>>>>>>>      studentID= "+studentID+" and subjectID= "+subjectID);
+		ArrayList<Lesson> data = (ArrayList<Lesson>) hibernateTemplate.find("SELECT l FROM Lesson AS l WHERE l.studentID=" + studentID +" AND l.subjectID="+subjectID);
+		System.out.println(">>>>>>>>>>>>>>      Got "+data.size()+" records");
+		return data;
 	}
 	
 	/**
@@ -146,7 +149,7 @@ public class LessonDAOImpl implements LessonDAO {
 	}
 
 	@Override
-	public Lesson getLessonByNumber(int lesson_number) {
+	public Lesson getLessonByNumber(int lessonNumber) {
 		// TODO Auto-generated method stub
 		return null;
 	}

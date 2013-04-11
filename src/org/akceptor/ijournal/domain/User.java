@@ -29,6 +29,9 @@ public class User {
 	@OneToOne(mappedBy="user", cascade=CascadeType.ALL)
     private Student student;
 	
+	@OneToOne(mappedBy="user", cascade=CascadeType.ALL)
+    private Teacher teacher;
+	
 	public int getUserID() {
 		return userID;
 	}
@@ -77,5 +80,14 @@ public class User {
 		this.student = student;
 	}
 
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
+	
 	
 }

@@ -76,6 +76,10 @@
 			document.getElementById("teacher-form").hidden = true;
 			document.getElementById("admin-form").hidden = true;
 			document.getElementById("anon-form").hidden = true;
+			//Autofill required but invisible form field and clear visible ones
+			document.forms['adduser'].elements['teachername'].value='NONE';
+			document.forms['adduser'].elements['studentname'].value='';
+			document.forms['adduser'].elements['bookNr'].value='';
 		}
 		if (Index==2){
 			//show teacher fields
@@ -83,6 +87,10 @@
 			document.getElementById("teacher-form").hidden = false;
 			document.getElementById("admin-form").hidden = true;
 			document.getElementById("anon-form").hidden = true;
+			//Autofill required but invisible form fields
+			document.forms['adduser'].elements['teachername'].value='';
+			document.forms['adduser'].elements['studentname'].value='NONE';
+			document.forms['adduser'].elements['bookNr'].value='NONE';
 		}
 		if (Index==3){
 			//show admin fields
@@ -90,6 +98,10 @@
 			document.getElementById("teacher-form").hidden = true;
 			document.getElementById("admin-form").hidden = false;
 			document.getElementById("anon-form").hidden = true;
+			//Autofill required but invisible form fields
+			document.forms['adduser'].elements['studentname'].value='NONE';
+			document.forms['adduser'].elements['bookNr'].value='NONE';
+			document.forms['adduser'].elements['teachername'].value='NONE';
 		}
 		if (Index==0){
 			//show anonymous fields
@@ -97,6 +109,10 @@
 			document.getElementById("teacher-form").hidden = true;
 			document.getElementById("admin-form").hidden = true;
 			document.getElementById("anon-form").hidden = false;
+			//Autofill required but invisible form fields
+			document.forms['adduser'].elements['studentname'].value='NONE';
+			document.forms['adduser'].elements['bookNr'].value='NONE';
+			document.forms['adduser'].elements['teachername'].value='NONE';
 		}
 		//alert("Selected "+Index);
 		
@@ -109,10 +125,12 @@
 Превед, одміністратор!
 Шо будьєм дьелаць?
 				<li><a href="#tab-one" onclick="showOne()">Користувачі</a></li>
-				<li><a href="#tab-two" onclick="showTwo()">Студенти</a></li>
 				<li><a href="#tab-three" onclick="showThree()">Групи</a></li>
-				<li><a href="#tab-four" onclick="showFour()">Викладачі</a></li>
 				<li><a href="#tab-five" onclick="showFive()">Предмети</a></li>
+				
+				<li><a href="#tab-two" onclick="showTwo()">Розклад</a></li>
+				<li><a href="#tab-four" onclick="showFour()">Викладачі</a></li>
+				
 <!-- start page --><br><br>
 	<div id="page">
 		<c:import url="menu.jsp" charEncoding="UTF-8" />
@@ -150,8 +168,8 @@
 								<input type="submit" value="Add User"/>
 							<br>	
 							<div id="student-form" style="float: left; ">
-									<input name="studentname" type="text" placeholder="Як звати студента" />
-									<input name="bookNr" type="text" placeholder="Номер заліковки" />
+									<input name="studentname" type="text" placeholder="Як звати студента" required/>
+									<input name="bookNr" type="text" placeholder="Номер заліковки" required/>
 									<select name="groupNr">
 										<c:forEach var="group" items="${groupList}">
 										<option value="${group.groupID}">${group.groupName}</option>
@@ -159,13 +177,15 @@
 									</select>
 							</div>
 							<div id="teacher-form" style="float: left; ">
-									<input name="teachername" type="text" placeholder="Як звати викладача" />
+									<input name="teachername" id="teachername" type="text" placeholder="Як звати викладача" required/>
 							</div>	
 							<div id="admin-form" style="float: left; ">
-									Для адміністраторів немає додаткових полів :)
+									Для адміністраторів немає додаткових полів :)<br>
+									Просто постарайтеся не забути пароль <br>
 							</div>
 							<div id="anon-form" style="float: left; ">
-									Ви точно впевнені, що потрібен такий юзер? :)
+									Ви точно впевнені, що потрібен такий юзер? :)<br>
+									Наразі система на підтримує анонімних користувачів<br>
 							</div>
 						</form>
 							
@@ -180,7 +200,7 @@
 			<!--Second table-->
 			<div id="tab-two" >
 				<div style="float: left; border: thin solid black">
-					<form name="editstudent" action="/myJournal/admin/editstudent" method="post">
+					<form name="editlessons" action="/myJournal/admin/editlessons" method="post">
 						<table border="1"><th>Студент </th><th>№ заліковки </th><th colspan=2>Controls</th>
 						
 							<c:forEach var="student" items="${studentList}" varStatus="usrCounter">

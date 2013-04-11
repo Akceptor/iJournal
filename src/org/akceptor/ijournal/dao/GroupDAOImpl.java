@@ -82,7 +82,12 @@ public class GroupDAOImpl implements GroupDAO {
 	@Transactional
 	public Group getGroupByID(int groupID) {
 		System.out.println("Searching for groupID "+groupID);
-		return (Group) hibernateTemplate.find("FROM Group AS g WHERE g.groupID="+groupID).get(0);
+		try{
+			return (Group) hibernateTemplate.find("FROM Group AS g WHERE g.groupID="+groupID).get(0);
+		} catch (IndexOutOfBoundsException e){
+			System.err.println("Group ID does not exist: "+groupID);
+			return null;
+		}
 	}
 
 	@SuppressWarnings("unchecked")

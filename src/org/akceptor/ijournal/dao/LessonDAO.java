@@ -10,7 +10,7 @@ public interface LessonDAO {
 	public void addLesson(Lesson lesson);
 	public void updateLesson(Lesson lesson);
 	public void delete(Lesson lesson);
-	public Lesson getLessonByNumber(int lesson_number);
+	public Lesson getLessonByNumber(int lessonNumber);
 	public List<Lesson> findLessons();
 	public ArrayList<Integer> getStudentsMarksBySubject(int studentID, int subjectID);
 	public ArrayList<Date> getLessonDatesBySubject(int subjectID);
