@@ -19,7 +19,7 @@ public class Lesson implements java.io.Serializable{
 	@Column(name = "lesson_id")
 	private int lessonID;
 
-	@Column(name = "student_id")
+	@Column(name = "student_id" )
 	private int studentID;
 	
 	@Column(name = "subject_id")
@@ -84,16 +84,12 @@ public class Lesson implements java.io.Serializable{
 		this.absense = absense;
 	}
 
-//	@ManyToOne
-//    @JoinColumn(name="student_id", referencedColumnName = "student_id", insertable = false, updatable = false)
-//    private Student students;
-//	
-//	@ManyToOne
-//	@JoinColumn(name="subject_id", referencedColumnName = "subject_id", insertable = false, updatable = false)
-//    private Subject subject;
-	
+
 	public Lesson() {
 	}
-	
 
+
+	
+	
+	
 }

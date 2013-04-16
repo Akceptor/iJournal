@@ -27,7 +27,6 @@ public class LessonService {
 
 	public ArrayList<Lesson> getStudentsDataFromSubject(int studentID,
 			int subjectID) {
-
 		return lessonDAO.getStudentsDataBySubject(studentID, subjectID);
 
 	}

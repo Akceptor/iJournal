@@ -8,6 +8,7 @@ import org.akceptor.ijournal.domain.Group;
 import org.akceptor.ijournal.domain.Lesson;
 import org.akceptor.ijournal.domain.Student;
 import org.akceptor.ijournal.domain.Subject;
+import org.akceptor.ijournal.service.DateService;
 import org.akceptor.ijournal.service.GroupService;
 import org.akceptor.ijournal.service.LessonService;
 import org.akceptor.ijournal.service.SubjectService;
@@ -51,6 +52,11 @@ public class MainController {
 			// Map<String, String[]> parameters = request.getParameterMap();
 			selectedGroup = request.getParameter("Group");
 			selectedSubject = request.getParameter("Subject");
+			
+			
+			
+			
+			
 			
 		}
 

@@ -10,7 +10,7 @@
 <link type="image/x-icon" href="<c:url value="/resources/images/fav.png"/>"
 	rel="shortcut icon">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="resources/style.css">
+
 
 <title>Login</title>
 </head>
@@ -30,21 +30,17 @@
 <br><font size="4">
 </font>
 <form name="f" action="<c:url value='j_spring_security_check'/>" method="POST">
-<table id="simple2" style="border: 3px solid rgb(0, 0, 255);" border="0" height="120" width="100px">
+<table id="simple2" border="0" height="120" width="100px">
 <tbody><tr>
-<td><a><img src="resources/images/Title.jpg" alt="Title" border="0" height="67" vspace="1" width="316"></a></td>
-</tr>
-<tr>
-<td style="text-align: right; font-family: sans-serif; font-size: 22px;">Login:
-	<input name="j_username" size="21" type="text" value='<c:if test="${not empty param.login_error}"><c:out value="${SPRING_SECURITY_LAST_USERNAME}"/></c:if>'/>&nbsp;</td>
-</tr>
-<tr>
-<td style="text-align: right; font-family: sans-serif; font-size: 22px;">Password:
-	<input name="j_password" size="21" type="password">&nbsp;</td>
-</tr>
-<tr>
-<td style="text-align: right;">
-<input value="Login" name="submit" class="button" style="font-weight: bold; color: rgb(0, 0, 255); background-color: rgb(200, 200, 200); border-style: solid; border-color: rgb(0, 0, 255); border-width: 1px; font-family: sans-serif; font-size: 16px;" type="submit">
+<td style="text-align: right">
+<img src="resources/images/Title.png" alt="Title" >
+<td>
+<td style="text-align: left; font-family: sans-serif; font-size: 22px;">
+Login:
+<input name="j_username" size="21" type="text" value='<c:if test="${not empty param.login_error}"><c:out value="${SPRING_SECURITY_LAST_USERNAME}"/></c:if>'/><br>
+Password:
+<input name="j_password" size="21" type="password"><br>
+<input value="Login" name="submit" class="button" style="font-weight: bold; color: rgb(255, 69, 0); background-color: rgb(255, 140, 0); border-style: solid; border-color: rgb(0, 0, 255); border-width: 1px; font-family: sans-serif; font-size: 16px;" type="submit">
 &nbsp;
 
 </td>

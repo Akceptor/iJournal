@@ -26,7 +26,7 @@ public class Student {
 	
 	//@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "student_id")
+	@Column(name = "student_id" )
 	private int studentID;
 
 	@Column(name = "book_nr")
@@ -114,6 +114,7 @@ public class Student {
 	}
 
 
+	
 	
 	
 

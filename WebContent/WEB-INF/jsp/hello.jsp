@@ -72,7 +72,7 @@
 <input type="text" name="lessonid" maxlength="5" size="5"
 								value="${lessonIDs.get(studentCounter.count-1)[dateCounter.count-1]}"
 								hidden /> 
-								<input type="number" min="0" max="10" step="1" name="mark" maxlength="2" size="2"
+								<input type="number" min="0" max="10" step="1" name="mark" maxlength="2" size="2" width="10"
 								value="${studentMarks.get(studentCounter.count-1)[dateCounter.count-1]}" required/></td>
 
 						</c:forEach>

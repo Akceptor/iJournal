@@ -1,24 +1,54 @@
 package org.akceptor.ijournal.domain;
 
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "dates")
 public class MyDate {
-	private int nr;
-	private String dateString;
-	public int getNr() {
-		return nr;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "date_id")
+	private int dateID;
+
+	@Column(name = "date")
+	private Date date;
+	
+
+
+	public int getDateID() {
+		return dateID;
 	}
-	public void setNr(int nr) {
-		this.nr = nr;
+
+
+
+	public void setDateID(int dateID) {
+		this.dateID = dateID;
 	}
-	public String getDateString() {
-		return dateString;
+
+
+
+	public Date getDate() {
+		return date;
 	}
-	public void setDateString(String dateString) {
-		this.dateString = dateString;
+
+
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
-	public MyDate(int nr, String dateString) {
+
+
+
+	public MyDate() {
 		super();
-		this.nr = nr;
-		this.dateString = dateString;
 	}
 
 	

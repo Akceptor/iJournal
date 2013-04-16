@@ -1,6 +1,8 @@
 package org.akceptor.ijournal.web;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.akceptor.ijournal.service.DateService;
 import org.akceptor.ijournal.service.GroupService;
 import org.akceptor.ijournal.service.StudentService;
 import org.akceptor.ijournal.service.SubjectService;
@@ -30,6 +32,8 @@ public class AdminController {
 	TeacherService teacherService;
 	@Autowired 
 	SubjectService subjectService;
+	@Autowired
+	DateService dateService;
 	
 		@RequestMapping(method = RequestMethod.GET)
 		/*
@@ -109,6 +113,18 @@ public class AdminController {
 		mav.setViewName("admin");
 		System.out.println("ADD Group "+request.getParameter("group"));
 		groupService.addGroup(request.getParameter("group"));
+		return "redirect:/admin";
+		}
+		
+		/*
+		 * Adding new academic year dates
+		 */
+		@RequestMapping(method = RequestMethod.POST, value="/newyear")
+		public String addYear(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("admin");
+		
+		dateService.generateCalendar(2012, true);
 		return "redirect:/admin";
 		}
 

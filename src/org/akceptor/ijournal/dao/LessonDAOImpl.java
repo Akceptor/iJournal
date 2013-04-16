@@ -73,6 +73,7 @@ public class LessonDAOImpl implements LessonDAO {
 		System.out.println(">>>>>>>>>>>>>>      Getting student data ");
 		System.out.println(">>>>>>>>>>>>>>      studentID= "+studentID+" and subjectID= "+subjectID);
 		ArrayList<Lesson> data = (ArrayList<Lesson>) hibernateTemplate.find("SELECT l FROM Lesson AS l WHERE l.studentID=" + studentID +" AND l.subjectID="+subjectID);
+		
 		System.out.println(">>>>>>>>>>>>>>      Got "+data.size()+" records");
 		return data;
 	}
@@ -101,7 +102,10 @@ public class LessonDAOImpl implements LessonDAO {
 	public ArrayList<Date> getLessonDatesBySubject(int subjectID) {
 
 		StringBuffer queryString = new StringBuffer();
-		queryString.append("select distinct ld.lesson_date FROM LessonDates AS ld, Lesson AS l WHERE (l.lessonID=ld.lesson_id) AND (l.subjectID=");
+		queryString.append("SELECT DISTINCT md.date FROM MyDate AS md, LessonDates AS ld, Lesson AS l WHERE ");
+		queryString.append("(l.lessonID=ld.lessonID) AND ");
+		queryString.append("(md.dateID=ld.dateID) AND ");
+		queryString.append("(l.subjectID=");
 		queryString.append(subjectID);
 		queryString.append(" )");
 		Query query = hibernateTemplate.getSessionFactory().openSession().createQuery(queryString.toString());

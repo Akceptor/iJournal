@@ -62,10 +62,10 @@
 	    document.getElementById("tab-four").hidden = true;
 	    document.getElementById("tab-five").hidden = true;
 	    //hide all but student add-user DIV's
-	    document.getElementById("student-form").hidden = false;
+	    document.getElementById("student-form").hidden = true;
 		document.getElementById("teacher-form").hidden = true;
 		document.getElementById("admin-form").hidden = true;
-		document.getElementById("anon-form").hidden = true;
+		document.getElementById("anon-form").hidden = false;
 	};
 	
 	function selectRole(){
@@ -129,7 +129,7 @@
 				<li><a href="#tab-five" onclick="showFive()">Предмети</a></li>
 				
 				<li><a href="#tab-two" onclick="showTwo()">Розклад</a></li>
-				<li><a href="#tab-four" onclick="showFour()">Викладачі</a></li>
+				<li><a href="#tab-four" onclick="showFour()">Новий семестр</a></li>
 				
 <!-- start page --><br><br>
 	<div id="page">
@@ -160,8 +160,8 @@
 								<input name="username" placeholder="Логін" type="text" required/>
 								<input name="password" type="text" placeholder="Пароль" required/>
 								<select name="role" id="role" onChange="selectRole()">
-									<option value=0>Anonymous</option>
-									<option value=1 selected="selected">Student</option>
+									<option value=0 selected="selected">Виберіть роль</option>
+									<option value=1>Student</option>
 									<option value=2>Teacher</option>
 									<option value=3>Administrator</option>
 								</select>
@@ -184,8 +184,8 @@
 									Просто постарайтеся не забути пароль <br>
 							</div>
 							<div id="anon-form" style="float: left; ">
-									Ви точно впевнені, що потрібен такий юзер? :)<br>
-									Наразі система на підтримує анонімних користувачів<br>
+									Виберіть роль для користувача, якого хочете створити<br>
+									
 							</div>
 						</form>
 							
@@ -245,17 +245,12 @@
 			<!--Forth table-->
 			<div id="tab-four" >
 				<div style="float: left; border: thin solid black">
-					<form name="editteacher" action="/myJournal/admin/editteacher" method="post">
-						<table border="1"><th>Teacher</th><th colspan=2>Controls</th>
-						
-							<c:forEach var="teacher" items="${teacherList}" varStatus="teacherCounter">
-								<tr>
-									<td>${teacher.teacherName}</td>
-									<td><button type="submit" name ="editbtn">Edit</button></td>
-									<td><button type="submit" name ="deletebtn">Delete</button></td>
-								</tr>
-							</c:forEach>
-						</table>
+					<form name="editteacher" action="/myJournal/admin/newyear" method="post">
+					Ця вкладка призначена для створення нового академічного року. <br>
+					У базу буде записано новий розклад, а всю існуючу інформацію буде видалено.<br>
+					Користуватися ДУЖЕ обережно!<br>
+					<button type="submit" >Згенерувати нові дати!</button>
+					
 					</form>
 				</div>	
 			</div>
